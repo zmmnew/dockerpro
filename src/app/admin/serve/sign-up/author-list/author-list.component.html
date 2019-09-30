@@ -1,0 +1,33 @@
+<div>
+  <nz-table #ajaxTable
+            [nzBordered]="true"
+            [nzFrontPagination]="false"
+            [nzData]="pagelist"
+            [nzLoading]="loading"
+            [(nzTotal)]="page.total"
+            [(nzPageIndex)]="page.index">
+    <thead>
+    <tr>
+      <th><span>姓名</span></th>
+      <th><span>年龄</span></th>
+      <th><span>性别</span></th>
+      <th *ngIf="info.activityType == '图片征集'"><span>单位</span></th>
+      <th><span>联系电话</span></th>
+      <th *ngIf="info.activityType == '图片征集'"><span>通讯地址</span></th>
+      <th *ngIf="info.activityType == '视频征集'"><span>学校</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of ajaxTable.data">
+      <td>{{ data.nickName }}</td>
+      <td>{{ data.age }}</td>
+      <td>{{ data.gender }}</td>
+      <td *ngIf="info.activityType == '图片征集'">{{ data.unit }}</td>
+      <td>{{ info.mobile }}</td>
+      <td *ngIf="info.activityType == '图片征集'">{{ data.address }}</td>
+      <td *ngIf="info.activityType == '视频征集'">{{ data.school }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+

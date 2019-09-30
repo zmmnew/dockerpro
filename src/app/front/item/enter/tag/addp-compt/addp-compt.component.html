@@ -1,0 +1,74 @@
+<div class="addpBox">
+  <p class="tit">添 加 成 员</p>
+
+    <div class="signUp">
+      <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>姓名 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <input type="text" nz-input formControlName="userName">
+              </div>
+              <div nz-col [nzSpan]="6">
+                <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入姓名</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>性别 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-radio-group formControlName="gender">
+              <label nz-radio nzValue="男">男</label>
+              <label nz-radio nzValue="女">女</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>出生日期 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <app-birthday (birChange)="birthday($event)"></app-birthday>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>年龄 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <span class="group" *ngIf="isage">{{ageNum}}岁</span>
+                <span class="group cc1" *ngIf="!isage" style="color:red !important;">{{ageNum}}岁</span>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>学校 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <input type="text" nz-input formControlName="school">
+              </div>
+              <div nz-col [nzSpan]="6">
+                <nz-form-explain *ngIf="validateForm.get('school').dirty && validateForm.get('school').errors">请输入学校</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <div class="addpBtn">
+        <button (click)="cancel()">取  消</button>
+        <button (click)="save()">保  存</button>
+      </div>
+      <div class="addappBtn">
+        <button (click)="save()">保  存</button>
+        <button (click)="cancel()">取  消</button>
+      </div>
+
+    </div>
+
+</div>

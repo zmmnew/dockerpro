@@ -1,0 +1,56 @@
+:host ::ng-deep .ant-select-selection{
+  border-radius: 10px;
+  height:48px !important;
+}
+:host ::ng-deep .ant-select-selection__rendered{
+  line-height: 48px;
+  display: flex;
+  justify-content: center;
+}
+.ant-select-selection--single {
+  height:48px;
+}
+.year{
+  margin:0 23px 0 12px;
+  font-size: 16px;
+}
+.nomargin{
+  margin-right:0;
+}
+.y{
+  width: 100px;
+  height:48px
+}
+.m{
+  width: 80px;
+  height:48px
+}
+@media (max-width: 1000px){
+  .selYear{
+    width: 100%;
+  }
+  .year{
+    margin:0 .05rem 0 .04rem;
+    font-size: .13rem;
+  }
+  .y{
+    width: .75rem;
+    height:.4rem
+  }
+  .m{
+    width: .5rem;
+    height:.4rem
+  }
+  :host ::ng-deep .ant-select-selection{
+    height:.4rem !important;
+  }
+  :host ::ng-deep .ant-select-selection__rendered{
+    line-height:.4rem;
+  }
+  :host ::ng-deep .ant-select-selection--single {
+    height:.4rem;
+  }
+  :host ::ng-deep .ant-select-selection__rendered{
+    margin:0 4px 0 4px;
+  }
+}

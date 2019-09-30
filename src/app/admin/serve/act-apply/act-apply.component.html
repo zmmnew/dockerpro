@@ -1,0 +1,90 @@
+<div nz-row class="margb" [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <form nz-form [nzLayout]="'inline'" nz-row>
+        <nz-form-item style="width:235px">
+          <nz-form-control><nz-range-picker [nzFormat]="'yyyy/MM/dd'"  [(ngModel)]="selectTime" [ngModelOptions]="{standalone: true}"></nz-range-picker></nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control><input nz-input placeholder="活动名称" [(ngModel)]="actname" name="actname" style="width:170px"/></nz-form-control>
+        </nz-form-item>
+        <!--<nz-form-item style="width:160px">-->
+          <!--<nz-form-label [nzSpan]="10">活动状态</nz-form-label>-->
+          <!--<nz-form-control [nzSpan]="14">-->
+            <!--<nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="statusValue">-->
+              <!--<nz-option *ngFor="let option of actStauts" [nzLabel]="option" [nzValue]="option"></nz-option>-->
+            <!--</nz-select>-->
+          <!--</nz-form-control>-->
+        <!--</nz-form-item>-->
+        <nz-form-item  style="width:160px">
+          <nz-form-label [nzSpan]="10">作品权限</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="applyValue">
+              <nz-option *ngFor="let option of apply" [nzLabel]="option" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item  style="width:160px">
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="getActPage()" >查询</button>
+            <button nz-button nzType="primary" (click)="reset()">重置</button>
+          </nz-button-group>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </div>
+</div>
+
+<div nz-row [nzGutter]="16" id="222">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <div class="mb-sm text-right">
+      </div>
+      <nz-table #ajaxTable
+                [nzShowSizeChanger]="true"
+                [nzBordered]="true"
+                [nzShowTotal]="totalTemplate"
+                [nzFrontPagination]="false"
+                [nzShowQuickJumper]="true"
+                [nzData]="actlist"
+                [nzLoading]="loading"
+                [(nzTotal)]="page.total"
+                [(nzPageIndex)]="page.index"
+                (nzPageIndexChange)="getActPage()"
+                (nzPageSizeChange)="pageSizeChange()"
+                [(nzPageSize)]="page.size">
+        <thead>
+        <tr>
+          <th nzWidth="150px"><span>活动图片</span></th>
+          <th nzWidth="200px"><span>活动名称</span></th>
+          <th nzWidth="200px"><span>活动周期</span></th>
+          <!--<th nzWidth="100px"><span>活动状态</span></th>-->
+          <th nzWidth="100px"><span>作品权限</span></th>
+          <th nzWidth="150px"><span>操作</span></th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr *ngFor="let data of ajaxTable.data">
+          <td><img src="{{data.thumbnail}}" height="50"></td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.activityStartTime | time}} 至 {{data.activityEndTime | time}}</td>
+          <!--<td>{{ data.status}}</td>-->
+          <td>{{data.applyStatus}}</td>
+          <td>
+            <nz-tooltip [nzTitle]="'申请'" *ngIf="data.applyStatus=='未申请'" (click)="showModal('提交申请',applyCompt,data,500)" style="margin-right: 10px"><a>
+              <!--<i nz-icon nzType="edit" nzTheme="twotone" nz-tooltip></i>-->
+              申请
+            </a></nz-tooltip>
+            <nz-tooltip  [nzTitle]="'上传报名'" *ngIf="data.type == '图片征集' && data.applyStatus=='已赋权' && data.status=='报名中'" (click)="showModal('上传报名',uploadCompt,data,1200)" style="margin-right: 10px"><a>
+              上传报名</a></nz-tooltip>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+<ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>
+
+

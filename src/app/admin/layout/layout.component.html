@@ -1,0 +1,28 @@
+<div class="file" id="admin">
+  <header>
+    <span (click)="toggleCollapsed()"><i nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'"></i></span>
+    <span>线上大赛征集后台管理系统</span>
+    <nz-dropdown class="user" [nzPlacement]="'bottomRight'">
+      <a  nz-dropdown>{{username}}</a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item>
+          <a (click)="logout()">退出登录</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+
+  </header>
+    <app-menu [isCollapsed]="isCollapsed"></app-menu>
+    <div class="content" [class.contcol]="isCollapsed">
+      <!--面包屑-->
+      <nz-breadcrumb>
+        <nz-breadcrumb-item *ngFor="let i of breadcrumb">{{i}}</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <!--路由内容-->
+      <div class="routcont">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+</div>
+

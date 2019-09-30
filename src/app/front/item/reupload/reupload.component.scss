@@ -1,0 +1,138 @@
+.myactdel {
+  margin: 0 auto;
+  padding: 60px 0 100px;
+  overflow: hidden;
+  .leftBox {
+    width: 790px;
+    margin:0 auto;
+    border: 1px solid #DEDEDE;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    .signupInfo {
+      overflow: hidden;
+      border-bottom: 1px solid #DEDEDE;
+      dt {
+        font-size: 24px;
+        font-weight: 600;
+        color: rgba(75, 75, 75, 1);
+        margin-bottom: 20px;
+      }
+      dd {
+        display: flex;
+        font-size: 14px;
+        color: rgba(78, 78, 78, 1);
+        margin-bottom: 20px;
+        align-items: center;
+        i {
+          display: block;
+          width: 6px;
+          height: 6px;
+          background: rgba(199, 199, 199, 1);
+          margin-right: 14px;
+        }
+        .ddtit {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+        }
+        .opp{
+          display: flex;
+          flex-direction: column;
+        }
+
+      }
+
+    }
+    .reload{
+      border:none;
+    }
+    .btn{
+      width:100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      button{
+        width: 340px;
+        height: 48px;
+        background: linear-gradient(90deg, #ff8625, #ffde25);
+        border:none;
+        border-radius: 6px;
+        margin: 20px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+        outline-style: none;
+
+      }
+
+    }
+  }
+}
+@media (max-width: 1000px){
+  .myactdel {
+    padding: 0 0 .5rem;
+    .leftBox {
+      border:none;
+      width: 100%;
+      padding: .15rem;
+      .signupInfo {
+        dt {
+          font-size: .18rem;
+          font-weight: 700;
+          margin-bottom: .1rem;
+        }
+        dd {
+          display: flex;
+          font-size: 14px;
+          margin-bottom: .1rem;
+          i {
+            width: 6px;
+            height: 6px;
+            margin-right: 14px;
+          }
+          .ddtit {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+          }
+
+        }
+        dd:last-child{
+          align-items: flex-start;
+        }
+        .user{
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .reload{
+        dd{
+          display: flex;
+          align-items: flex-start;
+          //align-items: normal;
+        }
+        .reup{
+          display: flex;
+          line-height: .4rem;
+          min-width: .7rem;
+        }
+      }
+      .btn{
+        width:100%;
+        margin-top: .1rem;
+        button{
+          width: 2.5rem;
+          height: .45rem;
+          border-radius: .07rem;
+          font-size: .15rem;
+          margin: .1rem auto 0;
+        }
+
+      }
+    }
+  }
+}

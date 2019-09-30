@@ -1,0 +1,34 @@
+<form nz-form>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">姓名</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <input nz-input [(ngModel)]="info.name" name="userName"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">手机号码</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <input nz-input [(ngModel)]="info.mobile" name="phone"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">申请理由</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <textarea rows="4" nz-input [(ngModel)]="info.description"  name="description"  [disabled]="disabled"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">审核通过</button>
+  <button nz-button nzType="primary" (click)="cancel()" >审核不通过</button>
+</div>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="提示"
+  (nzOnOk)="handleOk()"
+  (nzOnCancel)="handleCancel()">
+  <p>请输入审核不通过的理由：</p>
+  <textarea rows="4" nz-input [(ngModel)]="reason"  name="reason"></textarea>
+</nz-modal>

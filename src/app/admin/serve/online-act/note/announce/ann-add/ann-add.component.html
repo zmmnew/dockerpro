@@ -1,0 +1,19 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">公告名称</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <input nz-input [(ngModel)]="annName" name="annName"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">描述</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <app-editor (onPostData)="PostData($event)" [content]="editorContent" [disable]="disabled"></app-editor>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">保存</button>
+  <button nz-button nzType="primary" (click)="cancel()" >取消</button>
+</div>
+

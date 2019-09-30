@@ -1,0 +1,26 @@
+<div class="videoBox">
+  <audio id="audio_id" controls></audio>
+  <!--<video class="video-source" width="100%" height="240px" controls style="object-fit:fill" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-orientation="h5" x5-video-player-fullscreen="true" preload="auto" src="http://video.wenmind.com/6d785fffb73b4772925c3d60aea804eb/899d14b596fb4329984a4c2f08162907-a6d4336562b2aa3ce1f91cf05764ce66-ld.mp4" > </video>-->
+  <div *ngIf="step == 1">
+    <div class="preview preview1">
+      <p class="meng"><span class="noteInfo">正在读取文件...</span></p>
+      <div id="videobox">
+        <video controls id="video" style="width:100%;height:100%;background: #000;" [src]="videosrc | trustUrl"></video>
+
+        <!--<audio id="audio_id" controls autoplay loop>Your browser can't support HTML5 Audio</audio>-->
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div *ngIf="step == 1"><span>{{file?.name}}</span></div>
+    <div *ngIf="step == 1"><span class="time">{{file?.duration}}</span></div>
+    <div class="size">
+      <a class="upload"><input type="file" value="" (change)="uploadFile($event)" id="t4" name="file" [accept]="fileAccept"/>选择文件</a>
+      <span>（视频时长应<{{limitVideoTime}}s，大小应<{{size}}M，视频格式为{{filetype}}）</span>
+    </div>
+    <!--<span class="noteInfo">正在读取文件...</span>-->
+
+  </div>
+
+</div>
+

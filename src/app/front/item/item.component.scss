@@ -1,0 +1,177 @@
+.itemDel{
+  width:1200px;
+  margin:0 auto;
+  overflow: hidden;
+  background: #fff;
+  .oimg{
+    width:100%;
+    background: rgba(223,235,200,1);
+    position: relative;
+    .wxlogin{
+      position: absolute;
+      top: .1rem;
+      right: .1rem;
+      display: flex;
+      overflow: hidden;
+      padding: .05rem .0708rem;
+      background: rgba(255,255,255,.7);
+      border-radius: .05rem;
+      align-items: center;
+      span{
+        color:#FF8625;
+      }
+    }
+    .banner{
+      width:100%;
+      height:400px;
+    }
+    .action{
+      position: absolute;
+      bottom:20px;
+      right:40px;
+      display: flex;
+      .actoli{
+        width:60px;
+        height:40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255,255,255,0.9);
+        border-radius: 6px;
+        font-size:14px;
+        color:rgba(255,134,37,1);
+        margin-left: 10px;
+        cursor: pointer;
+        position: relative;
+        p{
+          position: absolute;
+          left: 0;
+          top:40px;
+          height:15px;
+          width:60px;
+          background: transparent;
+          display: none;
+        }
+        .share{
+          z-index:10;
+          position: absolute;
+          width:60px;
+          height:0;
+          background:rgba(255,255,255,0.9);
+          border-radius:6px;
+          overflow: hidden;
+          top:55px;
+          left:0;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          transition: all .5s;
+        }
+      }
+      .actshare:hover{
+        p{
+          display: block;
+        }
+        .share{
+          height:204px;
+        }
+      }
+      .actoli:last-child{
+        width:110px;
+        background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+        border-radius:6px;
+        color:rgba(255,255,255,1);
+      }
+    }
+  }
+  .onav{
+    width:100%;
+    height:70px;
+    background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+    display: flex;
+    justify-content: center;
+    margin:0;
+    li{
+      width:2.19rem;
+      height:100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color:#803900;
+      font-size: .18rem;
+      cursor: pointer;
+      letter-spacing: .03rem;
+      transition:all .5s;
+      span:nth-child(1){
+        margin-right: .38rem;
+      }
+      span:nth-child(2){
+        margin-left: .38rem;
+      }
+    }
+    .active{
+      background: #FF8625;
+      color:#fff;
+      span{
+        width:.1rem;
+        height:.1rem;
+        border:1px solid #fff;
+        border-radius: 50%;
+      }
+    }
+    li:hover{
+      color:#fff;
+      span{
+        width:.1rem;
+        height:.1rem;
+        border:1px solid #fff;
+        border-radius: 50%;
+      }
+    }
+  }
+  .roteCompt{
+    min-height:300px;
+  }
+}
+@media (max-width: 1000px){
+  .itemDel{
+    width:100%;
+    overflow: hidden;
+    .oimg{
+      .banner{
+        width:100%;
+        height:1.7rem;
+      }
+      .action{
+        position: absolute;
+        bottom: .1rem;
+        right: .1rem;
+        margin: 0;
+        .actoli {
+          width: .8rem !important;
+          height: .3rem;
+          border-radius: 6px;
+          font-size: 14px;
+          background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+          color:rgba(255,255,255,1);
+        }
+      }
+    }
+    .onav{
+      height:.4rem;
+      display: flex;
+      li{
+        flex: 1;
+        letter-spacing:0.01rem;
+        font-size: .14rem;
+        span{
+          display: none;
+        }
+      }
+    }
+    .roteCompt{
+      min-height:0;
+    }
+  }
+}

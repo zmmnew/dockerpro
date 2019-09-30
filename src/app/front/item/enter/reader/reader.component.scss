@@ -1,0 +1,21 @@
+.introBox{
+  .desc{
+    font-size: 16px;
+    line-height: 36px;
+    color:#4D4D4D;
+  }
+}
+::ng-deep .introBox{
+  color:rgba(0,0,0,1);
+}
+@media (max-width: 1000px){
+  ::ng-deep .introBox table{
+    width:100% !important;
+  }
+  .introBox {
+    .desc {
+      font-size: .14rem;
+      line-height: .27rem;
+    }
+  }
+}

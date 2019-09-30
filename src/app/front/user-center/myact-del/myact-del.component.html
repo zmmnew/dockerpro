@@ -1,0 +1,45 @@
+<div class="myactdel">
+    <div class="leftBox">
+      <dl class="signupInfo">
+        <dt>报名信息</dt>
+        <dd><i></i>{{signupdel?.region}}  ·  {{signupdel?.group}}  ·  {{signupdel?.groupType}} </dd>
+        <dd><i></i><span class='ddtit'>联系方式 : </span>{{signupdel?.mobile}}</dd>
+        <dd><i></i><span class='ddtit'>成员信息 : </span><span *ngFor="let i of userBox">{{i.nickName}}&nbsp; &nbsp;{{i.gender}}&nbsp; &nbsp;{{i.birthday}}&nbsp; &nbsp;{{i.school}}&nbsp; ；&nbsp;</span></dd>
+      </dl>
+      <div class="botBox">
+        <img src="{{signupdel?.thumbnail}}" alt="">
+        <div class="acttit">
+          <p>{{signupdel?.activityOnlineName}}</p>
+          <dl class="timeInfo">
+            <dt>报名有效期：{{signupdel?.activityStartTime | time}} ～ {{signupdel?.activityEndTime | time}}</dt>
+            <dd *ngIf="signupdel?.activityOnlineStatus == '报名中'" style="background: #72C43C">{{signupdel?.activityOnlineStatus}}</dd>
+            <dd *ngIf="signupdel?.activityOnlineStatus != '报名中'">{{signupdel?.activityOnlineStatus}}</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="rightBox">
+      <div class="videoBox">
+        <img [src]="signupdel?.vodPic" alt="" class="picImg"/>
+        <img src="assets/img/play.png" alt="" class="meng" (click)="toplay()"/>
+        <div class="videoPlay" *ngIf="isplay">
+          <app-ali-videoplay  [url]="signupdel?.videoId"></app-ali-videoplay>
+        </div>
+      </div>
+      <dl class="myOrder">
+        <dt>{{signupdel?.name}}</dt>
+        <dd>作品时长：{{signupdel?.videoTime}}</dd>
+        <dd>最终提交时间：{{signupdel?.createTime | time}}</dd>
+        <dd *ngIf="signupdel?.worksStats == '已入围'"><img src="assets/img/gong.png" alt=""/>恭喜，您的作品已入围！工作人员会尽快与您联系。</dd>
+        <dd *ngIf="signupdel?.worksStats == '待审核' "><img src="assets/img/dao.png" alt=""/>作品已提交，等待审核。</dd>
+        <dd *ngIf=" signupdel?.worksStats == '审核通过'"><img src="assets/img/dao.png" alt=""/>审核已通过，等待评审。</dd>
+        <dd *ngIf=" signupdel?.worksStats == '审核不通过'"><img src="assets/img/dao.png" alt=""/>审核未通过，感谢您的参与！未通过理由：{{signupdel?.reason}}</dd>
+        <dd *ngIf="signupdel?.worksStats == '未入围'"><img src="assets/img/yi.png" alt=""/>作品未入围，感谢您的参与！</dd>
+      </dl>
+      <div class="btn" *ngIf="signupdel?.worksStats == '待审核' || signupdel?.worksStats == '审核不通过'">
+        <button (click)="toupload(signupdel.id,signupdel.activityOnlineId)" *ngIf="signupdel?.retransmit &&signupdel?.activityOnlineStatus == '报名中'">重新上传</button>
+        <button  *ngIf="signupdel?.retransmit &&signupdel?.activityOnlineStatus == '报名中'" (click)="deleteZuo(signupdel.id)">删除</button>
+      </div>
+
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="sider" [class.sidercol]="isCollapsed">
+  <ul nz-menu [nzMode]="'inline'" nzTheme='dark' [nzInlineCollapsed]="isCollapsed">
+    <li nz-submenu *ngFor="let i of menu"  [appRole]="i.key">
+        <span title><i nz-icon [type]="i.icon"></i><span>{{i.name}}</span></span>
+        <ul>
+          <li nz-menu-item
+              *ngFor="let index of i.sdmenu"
+              [routerLink]="index.route" routerLinkActive="ant-menu-item-selected"
+              [appRole]="index.key">
+            {{index.name}}</li>
+        </ul>
+
+    </li>
+  </ul>
+</div>

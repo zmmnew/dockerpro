@@ -1,0 +1,51 @@
+.introBox{
+  padding:60px 100px 40px;
+  .title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    h2{
+      font-size:24px;
+      color:rgba(77,77,77,1);
+      margin-bottom:19px;
+    }
+    p{
+      font-size:14px;
+      color:rgba(154,154,154,1);
+      margin:0;
+    }
+  }
+  .op{
+    font-size: 16px;
+    line-height: 36px;
+    color:#4D4D4D;
+  }
+}
+::ng-deep .introBox{
+  color:rgba(0,0,0,1);
+}
+@media (max-width: 1000px){
+  ::ng-deep .introBox table{
+    width:100% !important;
+  }
+  .introBox{
+    padding:.2rem;
+    .title{
+      margin-bottom: .12rem;
+      h2{
+        font-size:.16rem;
+        font-weight:700;
+        margin-bottom:.1rem;
+      }
+      p{
+        font-size:.12rem;
+        color:rgba(154,154,154,1);
+      }
+    }
+    .op{
+      font-size: .14rem;
+      line-height: .27rem;
+    }
+  }
+}

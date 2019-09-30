@@ -1,0 +1,48 @@
+.footer{
+  width:100%;
+  overflow: hidden;
+  font-size: 14px;
+  color:#803900;
+  line-height: 1;
+  margin-top:100px;
+  .op{
+    height:6px;
+    background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+    margin-bottom: 2px;
+  }
+  .footcont{
+    overflow: hidden;
+    background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+    .odiv{
+      width:1060px;
+      margin:19px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      dl{
+        margin:0;
+        dt{
+          margin-bottom: 14px;
+        }
+      }
+      .ercode{
+        width:150px;
+        height:132px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        float:left;
+        margin-left: 10px;
+        img{
+          width:90px;
+          height:90px;
+        }
+        p{
+          margin:0;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

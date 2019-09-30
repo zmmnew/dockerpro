@@ -1,0 +1,54 @@
+.file{
+  width:100%;
+  height:100%;
+  overflow-x: hidden;
+  background: #F5F7FA;
+  header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    height: 55px;
+    background-color: #108ee9;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    z-index: 19;
+    span{
+      color:white;
+      padding:20px;
+      font-size: 20px;
+    }
+    .user{
+      position: absolute;
+      right: 25px;
+      font-size: 16px;
+      a{
+        color:white;
+      }
+    }
+  }
+  .navcont{
+    display: flex;
+    height:100%;
+  }
+  .content{
+    margin:55px 0 30px 180px;
+    nz-breadcrumb{
+      //border-bottom: 1px solid #d9d9d9;
+      height: 42px;
+      line-height: 42px;
+      padding: 0 20px;
+      //background: #fff;
+    }
+    .routcont{
+      margin:0 10px 10px;
+    }
+  }
+  .contcol{
+    margin:55px 0 30px 80px;
+  }
+
+}

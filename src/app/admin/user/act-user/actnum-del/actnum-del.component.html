@@ -1,0 +1,38 @@
+<div>
+  <nz-table #ajaxTable
+            [nzBordered]="true"
+            [nzFrontPagination]="false"
+            [nzData]="pagelist"
+            [nzLoading]="loading"
+            [(nzTotal)]="page.total"
+            [(nzPageIndex)]="page.index"
+            (nzPageIndexChange)="getPage()"
+            [(nzPageSize)]="page.size">
+    <thead>
+    <tr>
+      <th><span>活动名称</span></th>
+      <th *ngIf="type == 1 ||type == 2 "><span *ngIf="type == 1">申请的</span>节点</th>
+      <th *ngIf="type == 2"><span>角色</span></th>
+      <th *ngIf="type == 3"><span>驳回理由</span></th>
+      <th *ngIf="type == 1"><span>操作</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of ajaxTable.data">
+      <td>{{ data.activityOnlineName }}</td>
+      <td  *ngIf="type == 1 ||type == 2">{{ data.region }}</td>
+      <td  *ngIf="type == 2">活动管理员</td>
+      <td *ngIf="type == 3">{{ data.reason }}</td>
+      <td *ngIf="type == 1">
+        <a *ngIf="type == 1" style="margin-right: 10px" (click)="act_update(data)">赋权</a>
+        <a *ngIf="type == 1" (click)="notAgree(data)">驳回</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="提示" (nzOnCancel)="handleCancel()" (nzOnOk)="noagreeHttp()">
+  <p>请输入驳回的理由！</p>
+  <input nz-input style="width:400px;"  [(ngModel)]="deleteValue" />
+</nz-modal>

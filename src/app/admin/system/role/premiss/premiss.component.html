@@ -1,0 +1,14 @@
+<nz-tree
+  #nzTreeComponent
+  [nzData]="nodes"
+  nzCheckable
+  [nzShowLine]="true"
+  [nzAsyncData]="true"
+  [nzExpandAll]="true"
+  [(nzCheckedKeys)]="defaultCheckedKeys"
+>
+</nz-tree>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">保存</button>
+  <button nz-button nzType="primary" (click)="cancel()" >取消</button>
+</div>

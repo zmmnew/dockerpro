@@ -1,0 +1,15 @@
+<nz-spin [nzSpinning]="isSpinning">
+  <div class="noteBox">
+    <ul>
+      <li *ngFor="let i of noteList" (click)="todel(i.id)"><span>[ {{i.createTime | time}} ]</span>{{i.name}}</li>
+    </ul>
+    <p><span></span></p>
+  </div>
+  <div style="width:100%;text-align: center;margin:20px 0 40px" *ngIf="page.total!=0">
+    <!--<nz-pagination [(nzPageIndex)]="page.index" [(nzTotal)]="page.total" [nzSize]="'small'"></nz-pagination>-->
+    <nz-pagination nzShowTotal
+                   [(nzPageIndex)]="page.index" [nzTotal]="page.total" [(nzPageSize)]="page.size"
+                   (nzPageIndexChange)="changeindex()" ></nz-pagination>
+  </div>
+</nz-spin>
+ 

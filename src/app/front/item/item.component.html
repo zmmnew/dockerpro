@@ -1,0 +1,38 @@
+<div class="itemDel">
+    <div class="oimg">
+      <div class="wxlogin" *ngIf="iswx">
+        <div *ngIf="!islogin" ><span (click)="login(1)">登录</span>&nbsp;/&nbsp;<span (click)="login(2)">注册</span></div>
+        <div *ngIf="islogin"><span (click)="todel()">{{frontInfo?.name}}&emsp;</span></div>
+        <div *ngIf="islogin"><a (click)="toout()">退出</a></div>
+      </div>
+      <img [src]="actdel?.banner?actdel?.banner:'assets/img/actban1.jpg'" alt="" class="banner"/>
+      <ul class="action">
+        <!--<li class="actoli actshare">分享-->
+          <!--<p></p>-->
+          <!--<ul class="share">-->
+            <!--<li><img src="assets/img/wb.png" alt="" onclick="bShare.share(event,'sinaminiblog',1);return false;"/></li>-->
+            <!--<li><img src="assets/img/pyq.png" alt=""/></li>-->
+            <!--<li><img src="assets/img/wx.png" alt="" onclick="bShare.share(event,'weixin',1);return false;"/></li>-->
+            <!--<li><img src="assets/img/qq.png" alt="" onclick="bShare.share(event,'qqim',1);return false;"/></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+        <!--<li class="actoli">收藏</li>-->
+        <li class="actoli"  [routerLink]="['zhinan']" [queryParams]="{id:itemId}">报名指南</li>
+
+      </ul>
+    </div>
+    <ul class="onav">
+        <li [routerLink]="['detail']" [queryParams]="{id:itemId}" routerLinkActive="active"><span></span>活动介绍<span></span></li>
+        <li [routerLink]="['note']" [queryParams]="{id:itemId}" routerLinkActive="active">
+          <span></span>公告动态<span></span><a [routerLink]="['noteDel']"></a>
+        </li>
+        <li [routerLink]="['enter']" [queryParams]="{id:itemId}" routerLinkActive="active"><span></span>选手报名<span></span></li>
+        <li [routerLink]="['public']" [queryParams]="{id:itemId}" routerLinkActive="active">
+          <span></span>作品公示<span></span><a [routerLink]="['pubDel']"></a>
+        </li>
+    </ul>
+    <div class="roteCompt">
+      <router-outlet></router-outlet>
+    </div>
+</div>
+<div id="js"></div>

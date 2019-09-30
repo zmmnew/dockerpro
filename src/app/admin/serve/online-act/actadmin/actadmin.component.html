@@ -1,0 +1,29 @@
+
+<nz-table #ajaxTable
+          [nzShowSizeChanger]="true"
+          [nzBordered]="true"
+          [nzShowTotal]="totalTemplate"
+          [nzFrontPagination]="false"
+          [nzShowQuickJumper]="true"
+          [nzData]="list"
+          [nzLoading]="loading"
+          [(nzTotal)]="page.total"
+          [(nzPageIndex)]="page.index"
+          (nzPageIndexChange)="getlist()"
+          (nzPageSizeChange)="pageSizeChange()"
+          [(nzPageSize)]="page.size">
+  <thead>
+  <tr>
+    <th nzWidth="150px"><span>管理员</span></th>
+    <th nzWidth="200px"><span>活动角色</span></th>
+  </tr>
+  </thead>
+  <tbody >
+  <tr *ngFor="let data of ajaxTable.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.role}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>

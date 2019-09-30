@@ -1,0 +1,18 @@
+<nz-spin [nzSpinning]="isSpinning">
+  <div class="introBox">
+    <div class="title">
+      <h2>{{pubdel?.name}}</h2>
+      <p>{{pubdel?.createTime | time}}</p>
+      <p>{{username}}</p>
+      <!--<p>#第十四届全省读书朗诵大赛 </p>-->
+    </div>
+    <div class="videoplay" *ngIf="pubdel?.activityType=='视频征集'">
+      <!--<app-videoplay [url]="aliUrl + pubdel?.works" [islive]="'false'"></app-videoplay>-->
+      <app-ali-videoplay  [url]="pubdel?.videoId"></app-ali-videoplay>
+    </div>
+    <div class="videoplay" *ngIf="pubdel?.activityType=='图片征集'">
+      <img [src]="pubdel?.works" alt=""/>
+    </div>
+
+  </div>
+</nz-spin>

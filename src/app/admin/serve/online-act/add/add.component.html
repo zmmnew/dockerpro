@@ -1,0 +1,77 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">缩略图</nz-form-label>
+    <nz-form-control [nzSpan]="8">
+      <app-ali-upload [uploadAli]="uploadParamsImg" (retupload)="retImg($event)" ></app-ali-upload>
+      <img src="{{imgPath}}"  height="60" *ngIf="imgPath">
+    </nz-form-control>
+    <nz-form-label [nzSpan]="3">banner图</nz-form-label>
+    <nz-form-control [nzSpan]="8">
+      <app-ali-upload [uploadAli]="uploadParamsBanner" (retupload)="retBanner($event)"></app-ali-upload>
+      <img src="{{imgBanner}}"  height="60" *ngIf="imgBanner">
+    </nz-form-control>
+  </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">活动名称</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        <input nz-input [(ngModel)]="actName" name="actName"  [disabled]="disabled"/>
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">活动类别</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-radio-group [(ngModel)]="uploadType"  [nzDisabled]="uploadtype" [ngModelOptions]="{standalone: true}">
+        <label nz-radio nzValue="视频征集">视频征集</label>
+        <label nz-radio nzValue="图片征集">图片征集</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">结束时间</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-date-picker [(ngModel)]="endtime"  nzFormat="yyyy-MM-dd HH:mm:ss" nzShowTime [ngModelOptions]="{standalone: true}"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">覆盖范围</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <div nz-row>
+        <div nz-col [nzSpan]="4" >
+          <label [ngModelOptions]="{standalone: true}" nz-checkbox [(ngModel)]="_allChecked" (ngModelChange)="updateAllChecked($event)" [nzIndeterminate]="_indeterminate">全部</label>
+        </div>
+        <div nz-col [nzSpan]="4" *ngFor="let item of cityOptions">
+          <label nz-checkbox [(ngModel)]="item.checked" (ngModelChange)="updateSingleChecked($event)"  [ngModelOptions]="{standalone: true}">
+            <span>{{item.label}}</span>
+          </label>
+        </div>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">描述</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <app-editor (onPostData)="PostData($event)" [content]="editorContent" [disable]="disabled"></app-editor>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">附件上传</nz-form-label>
+    <nz-form-control [nzSpan]="20">
+      <app-ali-upload [uploadAli]="uploadfile" (retupload)="refile($event)" ></app-ali-upload>
+      <div nz-row *ngIf="imgfile">
+        <div nz-col [nzSpan]="22" >
+          <input nz-input [(ngModel)]="imgfile" name="file"  [disabled]="true"/>
+        </div>
+        <div nz-col [nzSpan]="2">
+          <nz-tooltip [nzTitle]="'点击复制'"><a ngxClipboard [cbContent]="imgfile" (cbOnSuccess)="copyPath()"><i nz-icon nzType="copy" nz-tooltip></i></a></nz-tooltip>
+        </div>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">保存</button>
+  <button nz-button nzType="primary" (click)="cancel()" >取消</button>
+</div>
+

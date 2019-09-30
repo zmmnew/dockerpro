@@ -1,0 +1,49 @@
+<nz-spin [nzSpinning]="isSpinning">
+<div class="enterBox"  *ngIf="step == 1 &&actdel?.type=='视频征集'">
+  <div class="smbox" *ngIf="openImg == 1">
+    <p class="title">请选择赛区</p>
+    <nz-select
+      style="width: 100%"
+      [(ngModel)]="multipleValue"
+      nzPlaceHolder="请选择赛区"
+      [nzSize]="'large'"
+    >
+      <nz-option *ngFor="let option of cityOfOption" [nzLabel]="option" [nzValue]="option"></nz-option>
+    </nz-select>
+    <dl class="note">
+      <dt>提 示：</dt>
+      <dd><span>1.</span><p>淄博赛区（涵盖淄博、济南、潍坊、东营、滨州、德州、聊城、泰安）</p></dd>
+      <dd><span>2.</span><p>烟台赛区（涵盖烟台、威海、青岛、日照）</p></dd>
+      <dd><span>3.</span><p>枣庄赛区（涵盖枣庄、临沂、济宁、菏泽）</p></dd>
+    </dl>
+
+    <p class="title">请选择组别</p>
+    <div class="selage">
+      <p *ngFor="let i of group" [class.ageSel]="selAge === i.id" (click)="togroup(i)">{{i.name}}</p>
+    </div>
+    <dl class="note">
+      <dt>提 示：</dt>
+      <dd><span>1.</span><p>【6-9岁组】2009年7月7日至2013年7月6日出生的选手</p></dd>
+      <dd><span>2.</span><p>【10-12岁组】2006年7月7日至2009年7月6日出生的选手</p></dd>
+    </dl>
+    <button (click)="next()">下 一 步</button>
+  </div>
+  <div class="enterImg" *ngIf="openImg == 0">
+    <img class="fff"  src="assets/img/nopenZ.png" alt=""/>
+  </div>
+  <div class="enterImg" *ngIf="openImg == 2">
+    <img class="fff" src="assets/img/closeZ.png" alt=""/>
+  </div>
+  <div class="enterImg" *ngIf="openImg == 3">
+    <img class="fff" src="assets/img/succZ.png" alt=""/>
+  </div>
+</div>
+<div *ngIf="step == 2">
+  <app-sign-up [actdel]="actdel" [group]="selgroup" [region]="multipleValue" (issuccess)="succadd($event)"></app-sign-up>
+</div>
+
+
+<div class="nopubtime" *ngIf="actdel?.type=='图片征集'">
+  <img class="fff" src="assets/img/noupload.png" alt=""/>
+</div>
+</nz-spin>

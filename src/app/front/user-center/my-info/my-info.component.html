@@ -1,0 +1,19 @@
+<nz-spin [nzSpinning]="isSpinning">
+  <ul class="myInfo">
+    <li class="infoli" *ngFor="let i of myinfolist">
+      <img src="assets/img/info.png" alt="" class="infoimg"/>
+      <!--<img src="assets/img/banner.png" alt="" class="actimg">-->
+      <dl>
+        <dt>{{i.content}}</dt>
+        <dd>
+          <span>{{i.createTime | time}}</span>
+          <!--<span class="open">展 开<i></i></span>-->
+        </dd>
+      </dl>
+    </li>
+  </ul>
+  <div style="width:100%;text-align: center;margin:20px 0 40px" *ngIf="page.total!=0">
+    <nz-pagination [(nzPageIndex)]="page.index" [(nzTotal)]="page.total" [nzSize]="'small'"></nz-pagination>
+  </div>
+</nz-spin>
+

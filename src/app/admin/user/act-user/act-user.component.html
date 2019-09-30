@@ -1,0 +1,85 @@
+<div nz-row class="margb" [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <form nz-form [nzLayout]="'inline'" nz-row>
+        <nz-form-item style="width:250px">
+          <nz-form-label [nzSpan]="10">账号状态</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="statusValue">
+              <nz-option *ngFor="let option of Stauts" [nzLabel]="option" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control><input nz-input placeholder="姓名/手机号/单位" [(ngModel)]="username" name="username" style="width:170px"/></nz-form-control>
+        </nz-form-item>
+        <nz-form-item  style="width:160px">
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="getPageone()" >查询</button>
+            <button nz-button nzType="primary" (click)="reset()">重置</button>
+          </nz-button-group>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </div>
+</div>
+
+<div nz-row [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <div class="mb-sm text-right">
+      </div>
+      <nz-table #ajaxTable
+                [nzShowSizeChanger]="true"
+                [nzBordered]="true"
+                [nzShowTotal]="totalTemplate"
+                [nzFrontPagination]="false"
+                [nzShowQuickJumper]="true"
+                [nzData]="pagelist"
+                [nzLoading]="loading"
+                [(nzTotal)]="page.total"
+                [(nzPageIndex)]="page.index"
+                (nzPageIndexChange)="getPage()"
+                (nzPageSizeChange)="pageSizeChange()"
+                [(nzPageSize)]="page.size">
+        <thead>
+        <tr>
+          <th nzWidth="150px"><span>姓名</span></th>
+          <th nzWidth="200px"><span>手机号</span></th>
+          <th nzWidth="200px"><span>单位</span></th>
+          <th nzWidth="100px"><span>账号状态</span></th>
+          <th nzWidth="100px"><span>未赋权</span></th>
+          <th nzWidth="100px"><span>已赋权</span></th>
+          <th nzWidth="100px"><span>已驳回</span></th>
+          <th nzWidth="300px"><span>操作</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of ajaxTable.data">
+          <td>{{ data.name }}</td>
+          <td>{{ data.mobile }}</td>
+          <td>{{ data.region}}</td>
+          <td>{{ data.deleted?'已停用':data.status}}</td>
+          <td><a (click)="showModal('申请列表',actnumCompt,1,data)">{{ data.noEmpower?data.noEmpower:0}}</a></td>
+          <td><a (click)="showModal('已赋权',actnumCompt,2,data)">{{ data.empower?data.empower:0}}</a></td>
+          <td><a (click)="showModal('已驳回',actnumCompt,3,data)">{{ data.reject?data.reject:0}}</a></td>
+          <td>
+            <nz-tooltip [nzTitle]="'管理员审核'" *ngIf="data.status == '未审核'" (click)="showModal('审核',checkCompt,'',data)" style="margin-right: 10px"><a>
+              <i nz-icon nzType="check-square" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip [nzTitle]="'密码重置'" *ngIf="data.status == '审核通过'" (click)="sureRepw(data)" style="margin-right: 10px" >
+              <a><i nz-icon nzType="lock" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip [nzTitle]="'启用'" *ngIf="data.status == '审核通过'&&data.deleted" (click)="sureOpen(data)" style="margin-right: 10px"><a>
+              <i nz-icon nzType="check" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip [nzTitle]="'停用'" *ngIf="data.status == '审核通过' &&!data.deleted"  (click)="sureStop(data)" style="margin-right: 10px">
+              <a><i nz-icon nzType="close" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip [nzTitle]="'删除'" (click)="sureDelete(data)">
+              <a><i nz-icon nzType="delete" nzTheme="outline" nz-tooltip></i></a>
+            </nz-tooltip>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+<ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>

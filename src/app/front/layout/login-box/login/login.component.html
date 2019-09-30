@@ -1,0 +1,46 @@
+<div class="flogin">
+  <div class="tit">
+    <h2>登 录</h2>
+    <i nz-icon nzType="close" nzTheme="outline" (click)="close()"></i>
+  </div>
+      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixUser">
+              <input type="text" nz-input formControlName="userName" placeholder="用户名">
+            </nz-input-group>
+            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入正确的用户名</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  class="nomargin">
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixLock" [nzSuffix]="suffixTemplate">
+                <input type="password" [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password" placeholder="密码">
+            </nz-input-group>
+            <nz-form-explain>
+              <span *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码</span>
+              <a class="login-form-forgot fg" (click)="toforget()">忘记密码?</a>
+            </nz-form-explain>
+
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="omargin">
+          <nz-form-control>
+            <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登&nbsp;&nbsp;&nbsp;录</button>
+            <label nz-checkbox formControlName="remember"><span>下次自动登录</span></label>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="omargin">
+          <nz-form-control>
+            <!--<label>使用短信验证码登录</label>-->
+            <label  class="login-form-forgot" >还没有账号，<span class="zhuce" (click)="toregister()">马上注册 >></span></label>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+</div>
+<ng-template #prefixUser><img src="assets/img/mobile.png" alt=""></ng-template>
+<ng-template #prefixLock><img src="assets/img/lock.png" alt=""></ng-template>
+<ng-template #suffixTemplate>
+  <img [src]="passwordVisible?'assets/img/pwsee.png':'assets/img/nopwsee.png'" alt="" (click)="passwordVisible = !passwordVisible"/>
+</ng-template>

@@ -1,0 +1,54 @@
+<div class="margb">
+  <nz-range-picker
+    [nzFormat]="'yyyy-MM-dd HH:mm'"
+    [(ngModel)]="seltime"
+    [nzPlaceHolder]="['评审开始时间', '评审结束时间']"
+    [nzShowTime]="{ nzFormat: 'HH:mm' }"
+    (ngModelChange)="timeChange($event)"
+  ></nz-range-picker>
+  打分设置:
+  <nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="fValue" style="width: 190px;">
+    <nz-option *ngFor="let option of fType" [nzLabel]="option" [nzValue]="option"></nz-option>
+  </nz-select>
+  <button class="btn" nz-button nzType="primary" (click)="save()">保存</button>
+  <div class="text-right">
+    <button nz-button nzType="primary" (click)="openM('新增',0,'')">新增</button>
+  </div>
+</div>
+
+<nz-table #ajaxTable
+          [nzShowSizeChanger]="true"
+          [nzBordered]="true"
+          [nzFrontPagination]="false"
+          [nzShowQuickJumper]="true"
+          [nzData]="list"
+          [nzLoading]="loading"
+          [(nzTotal)]="page.total"
+          [(nzPageIndex)]="page.index"
+          [(nzPageSize)]="page.size">
+  <thead>
+  <tr>
+    <th nzWidth="200px"><span>专家</span></th>
+    <th nzWidth="200px"><span>管辖节点</span></th>
+    <th nzWidth="100px"><span>角色</span></th>
+    <th nzWidth="300px"><span>操作</span></th>
+  </tr>
+  </thead>
+  <tbody >
+  <tr *ngFor="let data of ajaxTable.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.region}}</td>
+    <td>{{ data.role}}</td>
+    <td>
+
+      <nz-tooltip [nzTitle]="'修改'" (click)="openM('修改',1,data)" style="margin-right: 10px"><a>
+        <i nz-icon nzType="edit" nzTheme="twotone" nz-tooltip></i></a></nz-tooltip>
+      <nz-tooltip [nzTitle]="'密码重置'" (click)="repassw(data)" style="margin-right: 10px" >
+        <a><i nz-icon nzType="lock" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+      <nz-tooltip [nzTitle]="'删除'" (click)="actdet(data.id)">
+        <a><i nz-icon nzType="delete" nzTheme="twotone" nz-tooltip ></i></a>
+      </nz-tooltip>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="lheader">
+    <img src="assets/img/logo.png"  (click)="todel()" id='hImg1'/>
+  </div>
+  <div>
+    <div class="rheader" *ngIf="!islogin">
+      <span (click)="login(1)">登录</span>&nbsp;/&nbsp;<span (click)="login(2)">注册</span>
+    </div>
+    <div class="person" *ngIf="islogin">
+      <img src="assets/img/person.png" alt="" (click)="touc()"/>
+      <div class="personOul">
+        <p>{{frontInfo?.userName?frontInfo?.userName:frontInfo?.name}}</p>
+        <ul>
+          <li [routerLink]="['/front/uc/myact']" routerLinkActive="active">我的活动</li>
+          <li [routerLink]="['/front/uc/info']" routerLinkActive="active">消息通知 <span *ngIf="infostatus == 0" class="myinfo" ></span></li>
+          <li (click)="logout()">退出登录</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

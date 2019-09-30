@@ -1,0 +1,156 @@
+.enterBox{
+  width:680px;
+  margin:0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:50px 0 40px;
+  min-height:400px;
+  overflow: hidden;
+  .smbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title{
+    font-size:18px;
+    font-weight:600;
+    color:rgba(76,76,76,1);
+    margin-bottom: 40px;
+  }
+  .note{
+    margin: 30px 0 50px;
+    color:#4C4C4C;
+    width:100%;
+    dt{
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 30px;
+    }
+    dd{
+      display: flex;
+      font-size: 14px;
+      line-height: 28px;
+      letter-spacing: 1px;
+      span{
+        margin-right: 16px;
+      }
+      p{margin:0;}
+
+    }
+  }
+  .selage{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    p{
+      width:48.6%;
+      height:48px;
+      border:1px solid #C7C7C7;
+      border-radius:10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size:16px;
+      color:#4C4C4C;
+    }
+    .ageSel{
+      color:#FF8625;
+      border:1px solid #FF8625;
+    }
+  }
+  button{
+    width:340px;
+    height:48px;
+    background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+    border-radius:6px;
+    border:none;
+    font-size:18px;
+    color:#fff;
+  }
+  .enterImg{
+    height:400px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+input:hover{
+  border-color: #FE8625 !important;
+
+}
+.nopubtime{
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ant-input-affix-wrapper .ant-input:focus {
+  border-color: #FE8625;
+  box-shadow: 0 0 4px #FE8625
+}
+@media (max-width: 1000px){
+  .fff{
+    max-width:80%;
+  }
+  .nopubtime{
+    min-height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .enterBox{
+    width:100%;
+    padding:.3rem .2rem .3rem;
+    min-height:2rem;
+    .enterImg{
+      height:2rem;
+      width:100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .title{
+      font-size:18px;
+      font-weight:700;
+      margin-bottom: .19rem;
+    }
+    .note{
+      margin: .15rem 0 .3rem;
+      dt{
+        font-size: .13rem;
+        font-weight: 700;
+        line-height: .23rem;
+      }
+      dd{
+        font-size: .13rem;
+        line-height: .23rem;
+        letter-spacing: 0;
+        span{
+          margin-right: .05rem;
+        }
+        p{margin:0;}
+
+      }
+    }
+    .selage{
+      width:100%;
+      p{
+        height:.4rem;
+        border-radius:.07rem;
+        font-size:.13rem;
+        cursor: pointer;
+      }
+    }
+    button{
+      width:2.5rem;
+      height:.5rem;
+      border-radius:.07rem;
+      font-size:.15rem;
+    }
+
+  }
+}

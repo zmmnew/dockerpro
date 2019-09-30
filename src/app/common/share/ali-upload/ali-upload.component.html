@@ -1,0 +1,21 @@
+<div nz-row *ngIf="!stopShow" class="uploadimg">
+  <a class="upload"><input type="file" multiple (change)="uploadFile($event,isCropper)" id="t4" name="file" [accept]="fileAccept"/>选择文件</a>
+  <span *ngIf="this.zuopin">  (作品尺寸:四尺整宣竖幅)</span>
+</div>
+<div class="progress">
+  <div nz-row *ngIf="filename">
+    <div nz-col nzSpan="14">
+      {{filename}}
+    </div>
+    <div nz-col nzSpan="10" class="btn">
+      <button nz-button nzType="primary" (click)="interrupt()" *ngIf="!stop && calcelShow && uploadType">暂停</button>
+      <button nz-button nzType="primary" (click)="continues()" *ngIf="stop && calcelShow && uploadType">继续</button>
+      <button nz-button nzType="primary" (click)="cancalUpload()" *ngIf="calcelShow">删除</button><br/>
+    </div>
+  </div>
+  <div nz-row *ngIf="filename" style="display: flex;flex-direction: column">
+    <span class="noteInfo">正在读取文件...</span>
+    <nz-progress [nzPercent]="percent" *ngIf="isPercent" [nzStatus]="uploadStatus"></nz-progress>
+  </div>
+</div>
+

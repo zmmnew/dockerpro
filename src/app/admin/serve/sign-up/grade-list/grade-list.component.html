@@ -1,0 +1,26 @@
+<div>
+  <nz-table #ajaxTable
+            [nzBordered]="true"
+            [nzFrontPagination]="false"
+            [nzData]="pagelist"
+            [nzLoading]="loading"
+            [(nzTotal)]="page.total"
+            [(nzPageIndex)]="page.index"
+            [(nzPageSize)]="page.size">
+    <thead>
+    <tr>
+      <th><span>专家名称</span></th>
+      <th><span>评分时间</span></th>
+      <th><span>分数</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of ajaxTable.data">
+      <td>{{ data.userName }}</td>
+      <td>{{ data.createTime| time }}</td>
+      <td>{{ data.grade }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+

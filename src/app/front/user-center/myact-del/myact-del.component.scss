@@ -1,0 +1,169 @@
+.myactdel{
+  width:1200px;
+  margin:0 auto;
+  padding:60px 0 100px;
+  overflow: hidden;
+  //display: flex;
+  .leftBox{
+    float:left;
+    width:790px;
+    //margin-right: 20px;
+    border:1px solid #DEDEDE;
+    padding:30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    .signupInfo{
+      overflow: hidden;
+      border-bottom:1px solid #DEDEDE;
+      dt{
+        font-size:24px;
+        font-weight:600;
+        color:rgba(75,75,75,1);
+        margin-bottom: 20px;
+      }
+      dd{
+        font-size:14px;
+        color:rgba(78,78,78,1);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        i{
+          display: block;
+          width:6px;
+          height:6px;
+          background:rgba(199,199,199,1);
+          margin-right: 14px;
+        }
+        .ddtit{
+          margin-right: 10px;
+        }
+
+      }
+    }
+    .botBox{
+      height:114px;
+      margin-top: 30px;
+      display: flex;
+      img{
+        width:180px;
+        height:114px;
+        display: block;
+        margin-right:15px;
+      }
+      .acttit{
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p{
+          font-size:16px;
+          color:rgba(77,77,77,1);
+          margin-bottom: 10px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+        .timeInfo{
+          margin:0;
+          dt{
+            font-size:14px;
+            color:rgba(153,153,153,1);
+          }
+          dd{
+            width:80px;
+            height:30px;
+            background:rgba(199,199,199,1);
+            border-radius:8px;
+            text-align: center;
+            line-height: 30px;
+            font-size:14px;
+            color:#fff;
+            margin:0;
+            margin-top:7px;
+          }
+        }
+      }
+    }
+  }
+  .rightBox{
+    width:390px;
+    box-sizing: border-box;
+    float:right;
+    padding:20px 20px 30px;
+    background: #F7F7F7;
+    overflow: hidden;
+    .videoBox{
+      position: relative;
+      width:100%;
+      height:232px;
+      background: #000;
+      .picImg{
+        width:100%;
+        height:232px;
+
+      }
+      .meng{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+      .videoPlay{
+        width:100%;
+        height:232px;
+        position: absolute;
+        top:0;
+        left:0;
+        z-index:10;
+      }
+    }
+    .myOrder{
+      dt{
+        font-size:16px;
+        color:rgba(77,77,77,1);
+        margin:23px 0 10px;
+      }
+      dd:nth-child(2){
+        font-size:14px;
+        font-weight:400;
+        color:rgba(77,77,77,1);
+      }
+      dd:nth-child(3){
+        font-size:14px;
+        color:rgba(153,153,153,1);
+        margin:20px 0 15px;
+      }
+      dd:nth-child(4){
+        font-size:14px;
+        color:rgba(76,76,76,1);
+        display: flex;
+        align-items: center;
+        img{
+          margin-right: 10px;
+        }
+      }
+    }
+    .btn{
+      width:100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      button{
+        width:140px;
+        height:40px;
+        background:rgba(255,134,37,1);
+        border-radius:10px;
+        color:#FFFFFF;
+        margin-right:20px;
+        border:none;
+        outline-style: none;
+        cursor: pointer;
+      }
+      button:nth-child(2){
+        background: #E60000;
+        margin-right:0;
+      }
+    }
+  }
+}

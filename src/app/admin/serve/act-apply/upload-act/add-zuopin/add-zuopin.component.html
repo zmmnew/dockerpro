@@ -1,0 +1,72 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">作品类别</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-radio-group [(ngModel)]="worksType" [ngModelOptions]="{standalone: true}">
+        <label nz-radio nzValue="国画">国画</label>
+        <label nz-radio nzValue="传统毛笔字画">传统毛笔字画</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">上传作品</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <app-ali-upload [uploadAli]="uploadParams" [size]="actInfo?.size" [accept]="actInfo?.format" (retupload)="retImg($event)" ></app-ali-upload>
+      <img src="{{imgPath}}"  height="60" *ngIf="imgPath">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">作品名称</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <input nz-input [(ngModel)]="zuoname" name="zuoname"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">作者姓名</nz-form-label>
+    <nz-form-control [nzSpan]="7">
+      <input nz-input [(ngModel)]="personname" name="personname"  [disabled]="disabled"/>
+    </nz-form-control>
+    <nz-form-label nzRequired [nzSpan]="4">联系电话</nz-form-label>
+    <nz-form-control [nzSpan]="8">
+      <input nz-input [(ngModel)]="phone" name="phone"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">作者性别</nz-form-label>
+    <nz-form-control [nzSpan]="7">
+      <nz-radio-group [(ngModel)]="sex"  [nzDisabled]="disabled" [ngModelOptions]="{standalone: true}">
+        <label nz-radio nzValue="男">男</label>
+        <label nz-radio nzValue="女">女</label>
+      </nz-radio-group>
+    </nz-form-control>
+    <nz-form-label nzRequired [nzSpan]="4">作者年龄</nz-form-label>
+    <nz-form-control [nzSpan]="8">
+      <input nz-input [(ngModel)]="age" name="age" type="number"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">作者单位</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <input nz-input [(ngModel)]="unit" name="uniform"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired [nzSpan]="4">通讯地址</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <input nz-input [(ngModel)]="address" name="address"  [disabled]="disabled"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label  [nzSpan]="4">作品释文</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <textarea rows="4" nz-input [(ngModel)]="description"  [ngModelOptions]="{standalone: true}" [disabled]="disabled"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">保存</button>
+  <button nz-button nzType="primary" (click)="cancel()" >取消</button>
+</div>
+

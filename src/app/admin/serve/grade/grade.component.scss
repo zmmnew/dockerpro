@@ -1,0 +1,33 @@
+.margb{
+  margin-bottom: 16px;
+}
+/*top*/
+:host ::ng-deep .ant-card-body{
+  padding:17px 15px;
+}
+
+/*table*/
+.text-right{
+  float:right;
+  margin-right: 0;
+  button{
+    //margin-left: 15px;
+  }
+}
+.anticon{
+  font-size: 20px;
+}
+.ant-form-item{
+  margin-bottom: 0;
+}
+:host ::ng-deep button:hover{
+  background: #fff;
+  border:1px solid #1890FF;
+  color:#1890FF;
+}
+:host ::ng-deep nz-button-group{
+  margin-top: 3px;
+}
+:host ::ng-deep .ant-input-disabled{
+  color: rgba(0,0,0,.6);
+}

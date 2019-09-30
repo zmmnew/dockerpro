@@ -1,0 +1,71 @@
+.userCenter{
+  background: #fff;
+  .ucbanner{
+    width:100%;
+    height:300px;
+    background: url("../../../../assets/img/ucbanner.png") center no-repeat;
+    background-size: 100%;
+    padding-top: 120px;
+    .personimg{
+      width:1200px;
+      margin:0 auto;
+      display: flex;
+      .pimg{
+        width:104px;
+        height:104px;
+        border:6px solid #FAAD6D;
+        box-shadow: 0 0 6px #FE8625;
+        border-radius: 50%;
+        background: #FF8625;
+      }
+      dl{
+        margin:25px 0 0 20px;
+        dt{
+          font-size:30px;
+          color:rgba(77,77,77,1);
+        }
+        dd{
+          font-size:18px;
+          color:rgba(103,103,103,1);
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+          img{
+            width:20px;
+            height:21px;
+            margin-right: 17px;
+          }
+
+        }
+      }
+    }
+  }
+  .ucNav{
+    width:100%;
+    height:60px;
+    border-bottom: 1px solid #DEDEDE;
+    ul{
+      display: flex;
+      height:100%;
+      align-items: center;
+      width:1200px;
+      margin:0 auto;
+      li{
+        font-size:16px;
+        color:rgba(77,77,77,1);
+        margin-right: 60px;
+        cursor: pointer;
+      }
+      .active{
+        font-size:16px;
+        font-weight:600;
+        color:rgba(77,77,77,1);
+      }
+    }
+    .myCenter{
+      width:1200px;
+      margin:0 auto;
+      overflow: hidden;
+    }
+  }
+}

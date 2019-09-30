@@ -1,0 +1,15 @@
+<div nz-row style="overflow: hidden">
+  <div nz-col nzSpan="8" *ngIf="filename"><div class="preview preview1"></div></div>
+  <div nz-col nzSpan="16">
+    <div nz-row *ngIf="filename">{{filename}}<br/></div>
+    <!--<button nz-button nzType="primary" (click)="upload()">开始上传</button>-->
+    <div nz-row>
+      <span class="noteInfo"></span>
+      <nz-progress [nzPercent]="percent" *ngIf="stop == 2" [nzStatus]="uploadStatus"></nz-progress>
+    </div>
+    <div class="upload"><input type="file" multiple (change)="uploadFile($event)" id="t4" name="file" [accept]="type"/>选择文件</div>
+
+  </div>
+
+</div>
+

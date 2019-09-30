@@ -1,0 +1,9 @@
+.videosamplex{
+  width:100%;
+  height:360px;
+}
+@media (max-width: 1000px){
+  .videosamplex{
+    height:1.88rem;
+  }
+}

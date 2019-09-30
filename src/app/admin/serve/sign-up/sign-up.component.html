@@ -1,0 +1,175 @@
+<div nz-row class="margb" [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <form nz-form [nzLayout]="'inline'" nz-row>
+        <nz-form-item *ngIf="!isregion">
+          <nz-form-control [nzSpan]="14" style="width:180px;">
+            <nz-select [ngModelOptions]="{standalone: true}" nzPlaceHolder="活动名称" [(ngModel)]="selact" (ngModelChange)="selchange()">
+              <nz-option *ngFor="let i of adminapplylist,let index = index" [nzLabel]="i.name" [nzValue]="i.id"></nz-option>
+              <!--<nz-option  nzLabel="少儿诗词朗诵" nzValue="视频征集"></nz-option>-->
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+
+          <nz-form-item *ngIf="isregion">
+            <nz-form-control [nzSpan]="14" style="width:200px;">
+              <nz-select [ngModelOptions]="{standalone: true}" nzPlaceHolder="活动名称" [(ngModel)]="selact" (ngModelChange)="selchange()">
+                <nz-option *ngFor="let i of adminapplylist,let index = index" [nzLabel]="i.activityOnlineName" [nzValue]="i.activityOnlineId"></nz-option>
+                <!--<nz-option  nzLabel="少儿诗词朗诵" nzValue="视频征集"></nz-option>-->
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        <nz-form-item *ngIf="isregion">
+          <nz-form-control [nzSpan]="14" style="width:150px;">
+            <input nz-input [ngModel]="applyRegion" placeholder="地区" name="region" style="" disabled="true"/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="acttype=='视频征集' && !isregion" style="width:140px">
+          <nz-form-label [nzSpan]="8">赛区</nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-select [ngModelOptions]="{standalone: true}" nzPlaceHolder="赛区" [(ngModel)]="selregion" >
+              <nz-option *ngFor="let i of regionlist" [nzLabel]="i" [nzValue]="i"></nz-option>
+
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item style="width:120px"  *ngIf="acttype=='视频征集'">
+          <nz-form-label [nzSpan]="8">组别</nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-select [ngModelOptions]="{standalone: true}"  nzPlaceHolder="组别" [(ngModel)]="groupValue">
+              <nz-option *ngFor="let option of groupStauts" [nzLabel]="option" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="width:120px"  *ngIf="acttype=='视频征集'">
+          <nz-form-label [nzSpan]="8">形式</nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-select [ngModelOptions]="{standalone: true}"  nzPlaceHolder="形式" [(ngModel)]="participationValue">
+              <nz-option *ngFor="let option of groupparticipation" [nzLabel]="option" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="width:150px">
+          <nz-form-label [nzSpan]="10">作品状态</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="statusValue">
+              <nz-option *ngFor="let option of zuoStauts" [nzLabel]="option" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="width:120px">
+          <nz-form-label [nzSpan]="10">星标</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="starValue">
+              <nz-option *ngFor="let option of starStauts" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control><input nz-input placeholder="作品名称/作者/手机号" [(ngModel)]="actname" name="actname" style="width:160px"/></nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item >
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="getPageone()" >查询</button>
+            <button nz-button nzType="primary" (click)="reset()">重置</button>
+          </nz-button-group>
+        </nz-form-item>
+        <nz-form-item class="text-right">
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="export()">导出</button>
+          </nz-button-group>
+        </nz-form-item>
+
+      </form>
+    </nz-card>
+  </div>
+</div>
+
+<div nz-row [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card  id="table">
+      <nz-table #ajaxTable
+                [nzShowSizeChanger]="true"
+                [nzBordered]="true"
+                [nzShowTotal]="totalTemplate"
+                [nzFrontPagination]="false"
+                [nzShowQuickJumper]="true"
+                [nzData]="zuolist"
+                [nzLoading]="loading"
+                [(nzTotal)]="page.total"
+                [(nzPageIndex)]="page.index"
+                (nzPageIndexChange)="getPage()"
+                (nzPageSizeChange)="pageSizeChange()"
+                [(nzPageSize)]="page.size">
+        <thead (nzSortChange)="sort($event)" nzSingleSort>
+        <tr>
+          <th nzWidth="150px"><span>编号</span></th>
+          <th nzWidth="150px"><span>作品名称</span></th>
+          <th nzWidth="150px"><span>上传时间</span></th>
+
+          <th nzWidth="150px" *ngIf="acttype == '图片征集'"><span>提交场馆</span></th>
+          <th nzWidth="150px" *ngIf="acttype == '图片征集'"><span>作品类别</span></th>
+
+          <th nzWidth="150px" *ngIf="acttype == '视频征集'"><span>参赛组别</span></th>
+          <th nzWidth="150px" *ngIf="acttype == '视频征集'"><span>参与形式</span></th>
+          <th nzWidth="150px" *ngIf="acttype == '视频征集'"><span>赛区</span></th>
+
+          <!--<th nzWidth="150px"><span>作者信息</span></th>-->
+          <th nzWidth="150px"><span>作品状态</span></th>
+          <th nzWidth="110px" nzShowSort nzSortKey="grade"><span>平均分</span></th>
+          <th nzWidth="180px"><span>操作</span></th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr *ngFor="let data of ajaxTable.data">
+          <td>{{ data.id }}
+            <nz-tooltip *ngIf="!data.starMark"  [nzTitle]="'设置星标'"><a nz-tooltip (click)="setstar(data.id,1)"><i style="font-size: 16px;" nz-icon nzType="star" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip  *ngIf="data.starMark==1" [nzTitle]="'取消星标'"><a nz-tooltip (click)="setstar(data.id,0)"><i style="font-size: 16px;" nz-icon nzType="star" nzTheme="fill" nz-tooltip></i></a></nz-tooltip>
+          </td>
+          <td><a (click)="showModal('作品信息',checkCompt,1,data)">{{ data.name }}</a></td>
+          <td>{{ data.createTime| time }}</td>
+
+          <td  *ngIf="acttype == '图片征集'">{{ data.region}}</td>
+          <td *ngIf="acttype == '图片征集'">{{ data.worksType}}</td>
+
+          <td *ngIf="acttype == '视频征集'">{{ data.group}}</td>
+          <td *ngIf="acttype == '视频征集'">{{ data.groupType}}</td>
+          <td *ngIf="acttype == '视频征集'">{{ data.region}}</td>
+          <!--<td><a (click)="showModal('作者信息',authCompt,2,data)">{{ data.userName}}</a></td>-->
+          <td>{{ data.worksStats}}</td>
+          <td><a (click)="showModal('评分详情',gradeCompt,2,data)">{{ data.grade?data.grade:'--' }}</a></td>
+          <td>
+            <nz-tooltip  [nzTitle]="'作者信息'" (click)="showModal('作者信息',authCompt,2,data)" style="margin-right: 10px"><a>
+              <i nz-icon nzType="user" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+              <nz-tooltip  [nzTitle]="'作品审核'" *ngIf=" data.worksStats == '待审核'" (click)="showModal('审核',checkCompt,2,data)" style="margin-right: 10px">
+                <a *ngIf="acttype=='图片征集'&& userInfo.role!='活动管理员'"><i nz-icon nzType="check-square" nzTheme="outline" nz-tooltip></i></a>
+                <a *ngIf="acttype=='视频征集'"><i nz-icon nzType="check-square" nzTheme="outline" nz-tooltip></i></a>
+              </nz-tooltip>
+
+            <nz-tooltip  [nzTitle]="'入围'" *ngIf="data.worksStats == '审核通过'" (click)="win(data)" style="margin-right: 10px">
+              <a *ngIf="!(userInfo.role=='活动管理员'&& acttype=='图片征集') " ><i nz-icon nzType="crown" nzTheme="outline" nz-tooltip></i></a>
+            </nz-tooltip>
+            <nz-tooltip  [nzTitle]="'撤销入围'"  *ngIf="data.worksStats == '已入围' && userInfo.role!='活动管理员'" (click)="clearWin(data)" style="margin-right: 10px"><a>
+              <i nz-icon nzType="reload" nzTheme="outline" nz-tooltip></i></a></nz-tooltip>
+
+            <nz-tooltip [nzTitle]="'删除'" (click)="signDelete(data.id)">
+              <a><i nz-icon nzType="delete" nzTheme="twotone" nz-tooltip ></i></a>
+            </nz-tooltip>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+<ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <p>您确定删除该作品吗？如果确认请输入管理员密码？</p>
+  <input nz-input style="width:400px;" type="password"  [(ngModel)]="deleteValue" />
+</nz-modal>
+
+

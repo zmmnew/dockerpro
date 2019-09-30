@@ -1,0 +1,78 @@
+<div class="flogin">
+  <div class="tit">
+    <h2>手机号注册</h2>
+    <i nz-icon nzType="close" nzTheme="outline" (click)="close()"></i>
+  </div>
+  <form nz-form [formGroup]="validateForm" class="login-form">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group [nzPrefix]="prefixUser">
+          <input type="text" nz-input formControlName="userName" placeholder="请输入手机号">
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入正确的手机号</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <div nz-row [nzGutter]="8">
+          <div nz-col [nzSpan]="16">
+            <nz-input-group [nzPrefix]="prefixCode">
+              <input type="text" nz-input formControlName="piccode" placeholder="请输入图片验证码">
+            </nz-input-group>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <img src="{{srcurls}}" width="90" height="32" (click)="changepiccode();">
+          </div>
+        </div>
+        <nz-form-explain *ngIf="validateForm.get('piccode').dirty && validateForm.get('piccode').errors">请输入正确的图片验证码</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <div nz-row [nzGutter]="8">
+          <div nz-col [nzSpan]="16">
+            <nz-input-group [nzPrefix]="prefixCode">
+              <input type="text" nz-input formControlName="code" placeholder="请输入短信验证码">
+            </nz-input-group>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button (click)="getCaptcha()" [nzLoading]="isLoading" [disabled]="count" class="ant-btn__block">{{ count ? count + 's' : '验证码' }}</button>
+          </div>
+        </div>
+        <nz-form-explain *ngIf="validateForm.get('code').dirty && validateForm.get('code').errors">请输入验证码</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  class="nomargin">
+      <nz-form-control>
+        <nz-input-group [nzPrefix]="prefixLock" [nzSuffix]="suffixTemplate">
+          <input type="password" [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password" placeholder="请输入密码">
+        </nz-input-group>
+        <nz-form-explain>
+          <span *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码</span>
+          <!--<a class="login-form-forgot fg">忘记密码?</a>-->
+        </nz-form-explain>
+
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="omargin">
+      <nz-form-control>
+        <span nz-checkbox formControlName="remember"><span>我已阅读并同意《山东公共文化云用户服务条款与 隐私保护政策》</span></span>
+        <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="submitForm()">注&nbsp;&nbsp;&nbsp;册</button>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="omargin">
+      <nz-form-control>
+        <!--<label>使用短信验证码登录</label>-->
+        <label  class="login-form-forgot" >已有账号，<span class="zhuce" (click)="tologin()">马上登陆 >></span></label>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<ng-template #prefixUser><img src="assets/img/mobile.png" alt=""></ng-template>
+<ng-template #prefixLock><img src="assets/img/lock.png" alt=""></ng-template>
+<ng-template #prefixCode><img src="assets/img/code.png" alt=""></ng-template>
+<ng-template #suffixTemplate>
+  <img [src]="passwordVisible?'assets/img/pwsee.png':'assets/img/nopwsee.png'" alt="" (click)="passwordVisible = !passwordVisible"/>
+</ng-template>

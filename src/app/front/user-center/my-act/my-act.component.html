@@ -1,0 +1,35 @@
+<ul class="myAct">
+  <li class="actli" *ngFor="let i of myactlist">
+      <div class="actInfo">
+        <img src="{{i.thumbnail}}" alt="" class="actimg"/>
+        <dl>
+          <dt>{{i.activityOnlineName}}</dt>
+          <dd>
+            <button class="doing">{{i.activityOnlineStatus}}</button>
+            <!--<button class="todo">预 告</button>-->
+           <!--<button class="done">结 束</button></dd>-->
+        </dl>
+      </div>
+      <div class="partInfo">
+        <dl>
+          <dt><span *ngFor="let it of i.userBox">{{it.nickName}}，</span></dt>
+          <dd>{{i.region}} · {{i.group}} </dd>
+          <dd>
+            <span *ngIf="i.worksStats == '待审核'"><img src="assets/img/dao.png" alt=""/>作品已提交，等待审核。</span>
+            <span *ngIf=" i.worksStats == '审核通过'"><img src="assets/img/dao.png" alt=""/>审核已通过，等待评审。</span>
+            <span *ngIf=" i.worksStats == '审核不通过'"><img src="assets/img/dao.png" alt=""/>审核未通过，感谢您的参与！</span>
+            <span *ngIf="i.worksStats == '已入围'" ><img src="assets/img/gong.png" alt="" />恭喜，您的作品已入围！</span>
+            <span *ngIf="i.worksStats == '未入围'"><img src="assets/img/yi.png" alt=""  />作品未入围，感谢您的参与！</span>
+          </dd>
+        </dl>
+        <div class="jjj">
+          <p class="op1 op2" (click)="toOrderdel(i.id)"><span>查看</span><span>详情</span></p>
+          <div class="jjj" *ngIf="i.worksStats == '待审核' || i.worksStats == '审核不通过'">
+            <p class="op1 op3" (click)="toupload(i.id,i.activityOnlineId)" *ngIf="i.retransmit &&i.activityOnlineStatus == '报名中'"><span>重新</span><span>上传</span></p>
+            <p class="op1 op4" (click)="deleteZuo(i.id)"  *ngIf="i.retransmit &&i.activityOnlineStatus == '报名中'"><span>删除</span></p>
+          </div>
+        </div>
+
+      </div>
+  </li>
+</ul>

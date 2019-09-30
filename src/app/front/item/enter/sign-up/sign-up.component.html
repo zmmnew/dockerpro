@@ -1,0 +1,148 @@
+<nz-spin [nzSpinning]="isSpinning">
+    <div class="signUp">
+      <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>组别 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16"><span class="group">{{group}}</span></nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>组合形式 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-radio-group formControlName="groupType" (ngModelChange)="change()">
+              <label nz-radio nzValue="个人">个人</label>
+              <label nz-radio nzValue="组合">组合</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>作品名称 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <div class="zuoName">
+                  <input type="text" nz-input formControlName="name" (ngModelChange)="nameChange()" style="padding-right: 0.57rem;">
+                  <span>{{fontNum}} / 20</span>
+                </div>
+              </div>
+              <div nz-col [nzSpan]="6">
+                <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">请输入20字以内的作品名称</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="groupIndex == 1">
+          <nz-form-label [nzSpan]="8" nzRequired ><b>姓名 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <input type="text" nz-input formControlName="userName">
+              </div>
+              <div nz-col [nzSpan]="6">
+                <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入姓名</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  *ngIf="groupIndex == 1">
+          <nz-form-label [nzSpan]="8" nzRequired ><b>性别 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <nz-radio-group formControlName="gender">
+              <label nz-radio nzValue="男">男</label>
+              <label nz-radio nzValue="女">女</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  *ngIf="groupIndex == 1">
+          <nz-form-label [nzSpan]="8" nzRequired ><b>出生日期 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <app-birthday [group]="group" (birChange)="birthday($event)"></app-birthday>
+              </div>
+              <!--<div nz-col [nzSpan]="6">-->
+              <!--<nz-form-explain *ngIf="validateForm.get('birthday').dirty && validateForm.get('birthday').errors">请输入正确的用户名</nz-form-explain>-->
+              <!--</div>-->
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  *ngIf="groupIndex == 1">
+          <nz-form-label [nzSpan]="8" nzRequired ><b>年龄 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <span class="group" *ngIf="isage">{{ageNum}}岁</span>
+                <span class="group cc1" *ngIf="!isage" style="color:red !important;">{{ageNum}}岁</span>
+                <!--<span style="color:red;font-size: 14px;">您的年龄不在所选组别内，请选择别的组别</span>-->
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  *ngIf="groupIndex == 1">
+          <nz-form-label [nzSpan]="8" nzRequired ><b>学校 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <input type="text" nz-input formControlName="school">
+              </div>
+              <div nz-col [nzSpan]="6">
+                <nz-form-explain *ngIf="validateForm.get('school').dirty && validateForm.get('school').errors">请输入学校</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>手机号码 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="18">
+                <input type="text" nz-input formControlName="tel" disabled="true">
+              </div>
+              <div nz-col [nzSpan]="6">
+                <nz-form-explain *ngIf="validateForm.get('tel').dirty && validateForm.get('tel').errors">请输入正确的手机号码</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="8" nzRequired ><b>上传作品 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <app-ali-omd [uploadAli]="params" [size]="actdel?.size" [accept]="actdel?.format" [limitVideoTime]="actdel?.limitVideoTime" (retupload)="videoChange($event)"></app-ali-omd>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item  *ngIf="groupIndex == 2">
+          <nz-form-label [nzSpan]="8" nzRequired ><b>添加成员 <span class="mao">:</span></b></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <app-tag [tag]="tag"  [group]="group" (userBox)="userChange($event)"></app-tag>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="top:-10px">
+          <nz-form-label [nzSpan]="8" [nzNoColon]="true"></nz-form-label>
+          <nz-form-control [nzSpan]="16">
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="10">
+                <span nz-checkbox formControlName="remember"></span><span style="font-size: 14px;">我已阅读<a (click)="toreade()">《征集比赛版权声明》</a></span>
+              </div>
+              <div nz-col [nzSpan]="14">
+                <nz-form-explain *ngIf="validateForm.get('remember').dirty && validateForm.get('remember').errors">提交作品前请阅读版权声明</nz-form-explain>
+              </div>
+            </div>
+          </nz-form-control>
+
+        </nz-form-item>
+        <!--<nz-form-item>-->
+        <!--&lt;!&ndash;<nz-form-label [nzSpan]="8"></nz-form-label>&ndash;&gt;-->
+        <!--<nz-form-control [nzSpan]="16">-->
+        <!--<div nz-row [nzGutter]="8">-->
+        <!--我已阅读《征集比赛版权声明》-->
+        <!--<div nz-col [nzSpan]="6">-->
+        <!--<nz-form-explain *ngIf="validateForm.get('tel').dirty && validateForm.get('tel').errors">请输入正确的手机号码</nz-form-explain>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</nz-form-control>-->
+        <!--</nz-form-item>-->
+      </form>
+      <div class="btn" (click)="submite()" >提 交</div>
+    </div>
+  </nz-spin>
+
+

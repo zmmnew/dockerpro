@@ -1,0 +1,31 @@
+<div nz-row [nzGutter]="8">
+  <p class="addperson" (click)="showInput()">添加成员</p>
+  <!--<input type="text" [(ngModel)]="inputValue" class="addperson" *ngIf="addinput" (keydown.enter)="add()" (blur)="unfous()">-->
+</div>
+<div nz-row [nzGutter]="8">
+  <ul>
+    <li class="username" *ngFor="let i of inputBox,let index = index">
+      {{i.nickName}}
+      <span (click)="close(index)">×</span>
+    </li>
+  </ul>
+
+</div>
+
+  <nz-modal [(nzVisible)]="pcVisible"
+             nzWidth="800" [nzBodyStyle]="meng"
+             [nzFooter]="null" [nzClosable]="false" [nzMaskClosable]="false"
+           >
+    <app-addp-compt [group]="group" (open)="addpChange($event)"></app-addp-compt>
+  </nz-modal>
+
+  <nz-drawer
+    [nzClosable]="false"
+    [(nzVisible)]="appVisible" [nzBodyStyle]="meng" [nzHeight]="500"
+    nzPlacement="bottom"  [nzMaskClosable]="false"
+  >
+    <app-addp-compt  [group]="group" (open)="addpChange($event)"></app-addp-compt>
+  </nz-drawer>
+
+
+

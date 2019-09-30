@@ -1,0 +1,87 @@
+<div nz-row class="margb" [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <form nz-form [nzLayout]="'inline'" nz-row>
+        <nz-form-item style="width:235px">
+          <nz-form-control><nz-range-picker [nzFormat]="'yyyy/MM/dd'"  [(ngModel)]="selectTime" [ngModelOptions]="{standalone: true}"></nz-range-picker></nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control><input nz-input placeholder="作品名称/作者" [(ngModel)]="actname" name="actname" style="width:170px"/></nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="width:160px">
+          <nz-form-label [nzSpan]="10">作品状态</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <nz-select [ngModelOptions]="{standalone: true}" [(ngModel)]="statusValue">
+              <nz-option *ngFor="let option of zuoStauts" [nzLabel]="option" [nzValue]="option"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item  style="width:160px">
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="getzuopinPage()" >查询</button>
+            <button nz-button nzType="primary" (click)="reset()">重置</button>
+          </nz-button-group>
+        </nz-form-item>
+        <nz-form-item class="text-right">
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="showModal('新增',addCompt,0,'')">新增</button>
+          </nz-button-group>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </div>
+</div>
+
+<div nz-row [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <div class="mb-sm text-right">
+      </div>
+      <nz-table #ajaxTable
+                [nzShowSizeChanger]="true"
+                [nzBordered]="true"
+                [nzShowTotal]="totalTemplate"
+                [nzFrontPagination]="false"
+                [nzShowQuickJumper]="true"
+                [nzData]="zuolist"
+                [nzLoading]="loading"
+                [(nzTotal)]="page.total"
+                [(nzPageIndex)]="page.index"
+                (nzPageIndexChange)="getzuopinPage()"
+                (nzPageSizeChange)="pageSizeChange()"
+                [(nzPageSize)]="page.size">
+        <thead>
+        <tr>
+          <th nzWidth="50px"><span>序号</span></th>
+          <th nzWidth="200px"><span>作品名称</span></th>
+          <th nzWidth="100px"><span>作品类别</span></th>
+          <th nzWidth="100px"><span>作品状态</span></th>
+          <!--<th nzWidth="100px"><span>作者信息</span></th>-->
+          <th nzWidth="100px"><span>上传时间</span></th>
+          <th nzWidth="50px"><span>操作</span></th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr *ngFor="let data of ajaxTable.data">
+          <td>{{ data.id }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.worksType }}</td>
+          <td>{{ data.worksStats }}</td>
+          <!--<td>{{ data.userName}}</td>-->
+          <td>{{ data.createTime| time}}</td>
+          <td>
+            <nz-tooltip [nzTitle]="'修改'" (click)="showModal('修改',addCompt,1,data)" style="margin-right: 10px"><a>
+              <i nz-icon nzType="edit" nzTheme="twotone" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip [nzTitle]="'删除'" (click)="zuopindet(data.id)">
+              <a><i nz-icon nzType="delete" nzTheme="twotone" nz-tooltip ></i></a></nz-tooltip>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+<ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>
+
+

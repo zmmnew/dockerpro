@@ -1,0 +1,23 @@
+<nz-tabset [nzType]="'card'">
+  <!--<nz-tab nzTitle="报名规则">-->
+    <!--<ng-template nz-tab>-->
+      <!--<app-rule [info]="info"></app-rule>-->
+    <!--</ng-template>-->
+  <!--</nz-tab>-->
+  <nz-tab nzTitle="上传作品">
+    <ng-template nz-tab>
+      <app-update-set [info]="info"></app-update-set>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="专家评分">
+    <ng-template nz-tab>
+      <app-exper  [info]="info"></app-exper>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="作品公示">
+    <ng-template nz-tab>
+      <app-publication [info]="info" ></app-publication>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+

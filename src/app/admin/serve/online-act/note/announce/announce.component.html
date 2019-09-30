@@ -1,0 +1,60 @@
+<div>
+  <div nz-row class="margb">
+    <form nz-form [nzLayout]="'inline'" nz-row>
+      <nz-form-item>
+        <nz-form-control><nz-range-picker [nzFormat]="'yyyy/MM/dd'" [(ngModel)]="searchTime"  style="width:250px" [ngModelOptions]="{standalone: true}"></nz-range-picker></nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control><input nz-input placeholder="通知名称" [(ngModel)]="aname" name="aname" style="width:150px"/></nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control><button nz-button nzType="primary" (click)="getAnnPage()" >查询</button></nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="text-right">
+        <nz-form-control><button nz-button nzType="primary" (click)="showModalAnn('新增',0,'')">新增</button></nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div nz-row>
+    <nz-table #ajaxTable
+              [nzSize]="'middle'"
+              [nzBordered]="true"
+              [nzShowTotal]="totalTemplate"
+              [nzFrontPagination]="false"
+              [nzShowQuickJumper]="true"
+              [nzData]="announcelist"
+              [nzLoading]="loading"
+              [(nzTotal)]="page.total"
+              [(nzPageIndex)]="page.index"
+              (nzPageIndexChange)="getAnnPage()"
+              [(nzPageSize)]="page.size"
+       >
+      <thead>
+        <tr>
+          <th><span>通知名称</span></th>
+          <th><span>发布时间</span></th>
+          <th><span>操作</span></th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let data of ajaxTable.data">
+          <td><a (click)="showModalAnn('详情',2,data)">{{ data.name }}</a></td>
+          <td>{{ data.publicDate| time}}</td>
+          <td>
+            <nz-tooltip [nzTitle]="'修改'" (click)="showModalAnn('修改',1,data)" style="margin-right: 10px"><a>
+               <i nz-icon nzType="edit" nzTheme="twotone" nz-tooltip></i></a></nz-tooltip>
+            <nz-tooltip [nzTitle]="'删除'" style="margin-right: 10px">
+              <a><i nz-popconfirm nzTitle="确定要删除此项吗" (nzOnConfirm)="fileDelet(data.id)" nz-icon nzType="delete" nzTheme="twotone" nz-tooltip ></i></a>
+            </nz-tooltip>
+            <nz-tooltip [nzTitle]="'app消息推送'">
+              <a><i nz-icon nzType="notification" nzTheme="outline" (click)="sengmsg(data)" nz-tooltip></i></a>
+            </nz-tooltip>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>
+  </div>
+
+
+</div>

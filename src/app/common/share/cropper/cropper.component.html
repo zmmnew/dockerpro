@@ -1,0 +1,7 @@
+<div style="height:400px;">
+  <img id="image" [src]="imgShowPath | trustUrl">
+</div>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">裁剪</button>
+  <button nz-button nzType="primary" (click)="cancel()" >取消裁剪</button>
+</div>

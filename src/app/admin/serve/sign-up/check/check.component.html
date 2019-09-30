@@ -1,0 +1,48 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">作品名称</nz-form-label>
+    <nz-form-control [nzSpan]="7">
+      {{info?.name}}
+    </nz-form-control>
+    <nz-form-label *ngIf="info.activityType=='图片征集'" [nzSpan]="4">作品类别</nz-form-label>
+    <nz-form-control *ngIf="info.activityType=='图片征集'" [nzSpan]="8">
+      {{info?.worksType}}
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">作品详情</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <img src="{{info?.works}}" class="seepic" style="width:70%;" alt="" *ngIf="info?.activityType=='图片征集'"/>
+      <div style="width:100%;height:300px;"  *ngIf="info?.activityType=='视频征集'">
+        <!--<app-videoplay [url]="aliURL+info.works"></app-videoplay>-->
+        <app-ali-videoplay  [url]="info?.videoId"></app-ali-videoplay>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="info?.activityType=='图片征集'">
+    <nz-form-label [nzSpan]="4">作品释文</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      {{info?.description}}
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item *ngIf="type==1&&info?.worksStats == '审核不通过'">
+    <nz-form-label [nzSpan]="4">审核不通过原因</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      {{info?.reason}}
+    </nz-form-control>
+  </nz-form-item>
+
+
+</form>
+<div class="customize-footer" *ngIf="type == 2">
+  <button nz-button nzType="primary" (click)="save()">审核通过</button>
+  <button nz-button nzType="primary" (click)="nopass()" >审核不通过</button>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <p>请输入审核不通过原因？</p>
+  <input nz-input style="width:400px;"  [(ngModel)]="deleteValue" />
+</nz-modal>
+
+

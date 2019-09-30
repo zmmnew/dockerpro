@@ -1,0 +1,43 @@
+<nz-spin [nzSpinning]="isSpinning">
+<div class="publicBox" *ngIf="actdel?.status == '公示中'">
+  <div class="classNav" *ngIf="actdel?.type=='图片征集'">
+    <div class="tit">筛选：</div>
+    <ul class="navUl">
+      <li *ngFor="let i of classBox" (click)="findcla(i)" [class.sleCla]="selclassify == i" >{{i}}</li>
+    </ul>
+  </div>
+  <div class="publist">
+
+      <ul class="pubUI">
+        <li *ngFor="let i of publist" (click)="todel(i.id)">
+          <div class="pubimg">
+            <img src="{{i.works}}" alt="" class="oimg"  *ngIf="i.activityType == '图片征集'"/>
+            <img src="{{i.vodPic}}" alt="" class="oimg"  *ngIf="i.activityType == '视频征集'"/>
+            <span>{{i.videoTime}}</span>
+            <div class="meng">
+              <img src="assets/img/play.png" *ngIf="i.activityType == '视频征集'" alt=""/>
+            </div>
+          </div>
+          <div class="imgtit">
+            <p class="name">{{i.name}}</p>
+            <p class="person">{{i.createTime | time}}</p>
+          </div>
+        </li>
+      </ul>
+      <div style="width:100%;text-align: center;margin:20px 0 40px" *ngIf="page.total!=0">
+        <!--<nz-pagination [(nzPageIndex)]="page.index" [(nzPageSize)]="page.size"   (nzPageIndexChange)='changeindex()' [nzSize]="'small'"></nz-pagination>-->
+        <nz-pagination nzShowTotal
+                       [(nzPageIndex)]="page.index" [nzTotal]="page.total" [(nzPageSize)]="page.size"
+                       (nzPageIndexChange)="changeindex()" ></nz-pagination>
+      </div>
+
+  </div>
+</div>
+<div class="nopubtime" *ngIf="actdel?.status != '公示中' && actdel?.status != '结束'">
+  <img src="assets/img/nopubtime.png" alt=""/>
+</div>
+  <div class="nopubtime" *ngIf="actdel?.status == '结束'">
+    <img src="assets/img/pubend.png" alt=""/>
+  </div>
+</nz-spin>
+<!--<ng-template #totalTemplate let-range="range" let-total> 共{{ page.total }} 条</ng-template>-->

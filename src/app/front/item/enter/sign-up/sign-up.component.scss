@@ -1,0 +1,157 @@
+.signUp{
+  width:855px;
+  margin:55px auto;
+  .btn{
+    width:340px;
+    height:48px;
+    background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+    border-radius:6px;
+    margin:40px auto 0;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    font-size:18px;
+    color:#fff;
+    cursor: pointer;
+    outline-style: none;
+  }
+  .zuoName{
+    position: relative;
+    overflow: hidden;
+    span{
+      position: absolute;
+      top:50%;
+      right:5%;
+      color:#999999;
+      transform: translate(0, -50%);
+
+    }
+  }
+
+}
+:host ::ng-deep .ant-form label{
+  line-height:48px;
+  font-size:16px;
+  color:#4C4C4C;
+  margin-right: 30px;
+  b{
+    font-weight: normal;
+    display: inline-block;
+    width:77px;
+    text-align: justify;
+    text-align-last: justify;
+    text-justify:distribute-all-lines;
+  }
+  .mao{
+    display: none;
+  }
+}
+:host ::ng-deep .ant-form-item-control{
+  line-height:48px;
+  font-size:16px;
+  color:#4C4C4C;
+}
+.ant-form-item{
+  margin-bottom: 24px;
+}
+.ant-form-explain {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+input{
+  height:48px;
+}
+input:hover{
+  border-color: #FE8625 !important;
+
+}
+.ant-input:focus {
+  border-color: #FE8625;
+  box-shadow: 0 0 4px #FE8625
+}
+
+.ant-input-disabled, .ant-input[disabled]{
+  color:rgba(0,0,0,.8)
+}
+@media (max-width: 1000px){
+  .signUp{
+    width:100%;
+    padding:.2rem .15rem;
+    margin:0;
+    .btn{
+      width:2.5rem;
+      height:.5rem;
+      border-radius:.07rem;
+      font-size:.15rem;
+    }
+  }
+  :host ::ng-deep nz-row{
+    flex-wrap: wrap;
+  }
+  :host ::ng-deep .ant-form-item-control-wrapper{
+    display: block;
+    width: 74%;
+  }
+  :host ::ng-deep .ant-form-item-label {
+    display: block;
+    width: 24%;
+    line-height: .2rem;
+  }
+  :host ::ng-deep .ant-form label{
+    line-height:.3rem;
+    font-size:.13rem;
+    margin-right:0;
+    b{
+      width:.65rem;
+    }
+    .mao{
+      display: inline-block;
+    }
+  }
+  :host ::ng-deep .ant-form-item-control{
+    line-height:.2rem;
+    font-size:.13rem;
+  }
+  input{
+    width:100%;
+    height:.4rem;
+  }
+  .ant-form-item{
+    margin-bottom: .2rem;
+  }
+  .group{
+    display: inline-block;
+    line-height: .2rem;
+    margin-top: .05rem;
+    color:red;
+  }
+  .ant-col-18{
+    width:100%;
+  }
+  .ant-col-6{
+    width:100%;
+  }
+  .ant-col-10{
+    width:100%;
+  }
+  .ant-col-14{
+    width:100%;
+  }
+  .ant-form-explain {
+    margin-top: .01rem;
+    height: .15rem;
+    display: flex;
+    align-items: center;
+  }
+  .ant-form-item-with-help{
+    margin-bottom: 5px;
+  }
+}
+::ng-deep .ant-checkbox-checked .ant-checkbox-inner{
+  background-color: red;
+  border-color: red;
+}
+::ng-deep .ant-checkbox:hover .ant-checkbox-inner{
+  border-color: red;
+}

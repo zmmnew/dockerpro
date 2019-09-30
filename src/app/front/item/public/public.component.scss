@@ -1,0 +1,168 @@
+.publicBox{
+  padding:0 70px;
+  .classNav{
+    display: flex;
+    padding:29px 0;
+    color:#4C4C4C;
+    border-bottom: 1px solid #DEDEDE;
+    .tit{
+      line-height: 45px;
+    }
+    .navUl{
+      margin:0;
+      display: flex;
+      flex-wrap: wrap;
+      li{
+        cursor: pointer;
+        line-height: 45px;
+        margin: 0 18px;
+      }
+      li:hover{
+        color:#FF8625;
+      }
+      .sleCla{
+        color:#FF8625;
+      }
+    }
+  }
+  .publist{
+    padding-top:40px;
+    .pubUI{
+      display: flex;
+      flex-wrap: wrap;
+      li{
+        width:250px;
+        margin:0 20px 27px 0;
+        cursor: pointer;
+        .pubimg{
+          background: #000;
+          position: relative;
+          overflow: hidden;
+          border-radius:18px;
+          width:250px;
+          height:165px;
+          span{
+            position: absolute;
+            right:10px;
+            bottom:10px;
+            color:#fff;
+          }
+          .oimg{
+            width:100%;
+            height:100%;
+          }
+          .meng{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background: rgba(0,0,0,0.1);
+            img{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%,-50%);
+            }
+          }
+        }
+        .imgtit{
+          padding:0 10px;
+          .name{
+            margin:8px 0 6px;
+            color:#4D4D4D;
+            font-size:16px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
+          .person{
+            font-size:14px;
+            color:#999999;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            margin:0;
+          }
+        }
+      }
+      li:nth-child(4n){
+        margin-right:0;
+      }
+
+    }
+
+  }
+}
+.nopubtime{
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1000px){
+  .nopubtime{
+    min-height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .publicBox{
+    padding:0 .2rem;
+    .classNav{
+      padding:.14rem 0;
+      .tit{
+        line-height: .24rem;
+      }
+      .navUl{
+        margin:0;
+        display: flex;
+        flex-wrap: wrap;
+        li{
+          line-height: .24rem;
+          margin: 0 .09rem;
+        }
+      }
+
+    }
+    .publist{
+      width:100%;
+      padding-top: .2rem;
+      .pubUI{
+        display: flex;
+        justify-content: space-between;
+        li{
+          width:48%;
+          margin:0 0 .13rem;
+          .pubimg{
+            border-radius:.09rem;
+            width:100%;
+            height:1.07rem;
+            span{
+              position: absolute;
+              right:.05rem;
+              bottom:.05rem;
+              color:#fff;
+            }
+          }
+          .imgtit{
+            padding:0 .05rem;
+            .name{
+              margin:.04rem 0 .03rem;
+              font-size:.14rem;
+            }
+            .person{
+              font-size:.12rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+::ng-deep .ant-pagination-item-active a{
+  color:#FF8625;
+}
+::ng-deep .ant-pagination-item-active{
+  border-color: #FF8625;
+}

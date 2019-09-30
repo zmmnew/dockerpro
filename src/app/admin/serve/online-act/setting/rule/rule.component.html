@@ -1,0 +1,21 @@
+<div>
+  <form nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">大赛场景</nz-form-label>
+      <nz-form-control [nzSpan]="19">
+        {{info.name}}
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">报名规则</nz-form-label>
+      <nz-form-control [nzSpan]="19" *ngIf="'图片征集'">
+        <p>同一手机号最多允许报名两次，不包含审核未通过的。</p>
+        <p>一个组合最多三个人，最少两人。</p>
+        <p>查重方式：姓名、性别、年龄；每人只能参赛一次。</p>
+        <p>审核未通过的报名信息可以被用户主动删除。</p>
+      </nz-form-control>
+      <nz-form-control [nzSpan]="19">无需报名</nz-form-control>
+    </nz-form-item>
+  </form>
+
+</div>

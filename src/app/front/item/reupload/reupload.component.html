@@ -1,0 +1,31 @@
+<div class="myactdel">
+  <div class="leftBox">
+    <dl class="signupInfo">
+      <dt>报名信息</dt>
+      <dd><i></i>{{signupdel?.name}}</dd>
+      <dd><i></i>{{signupdel?.region}}  ·  {{signupdel?.group}}  ·  {{signupdel?.groupType}} </dd>
+      <dd><i></i><span class='ddtit'>联系方式 : </span>{{signupdel?.mobile}}</dd>
+      <dd><span class='ddtit'><i></i>成员信息 :</span>
+        <div class="user">
+
+            <span *ngFor="let i of userBox">{{i.nickName}}&nbsp; &nbsp;{{i.gender}}&nbsp; &nbsp;{{i.birthday}}&nbsp; &nbsp;{{i.school}}&nbsp; ；&nbsp;</span>
+        </div>
+       </dd>
+
+    </dl>
+    <dl class="signupInfo reload">
+      <dt>重传作品</dt>
+      <dd>
+        <span class='ddtit reup'>重传作品 : </span>
+        <app-ali-omd [uploadAli]="params" [accept]="actdel?.format" [size]="actdel?.size" [limitVideoTime]="actdel?.limitVideoTime" (retupload)="videoChange($event)"></app-ali-omd>
+      </dd>
+    </dl>
+    <div class="btn">
+      <button (click)="toupload()">提 交</button>
+    </div>
+
+  </div>
+
+</div>
+
+

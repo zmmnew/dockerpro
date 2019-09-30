@@ -1,0 +1,116 @@
+<div class="loginbox">
+  <div class="registertit">
+    <div class="box">
+      <h2>线上大赛征集后台管理系统<span>欢迎注册</span></h2>
+      <p>已有账户，<a (click)="login()">去登陆</a></p>
+    </div>
+  </div>
+  <div class="login">
+    <form nz-form [formGroup]="validateForm" class="login-form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >姓名</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="userName">
+          </nz-input-group>
+            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入正确的用户名(数字或字母,长度为2-8个字符)</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >手机号</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="userphone" >
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('userphone').dirty && validateForm.get('userphone').errors">请输入正确的手机号</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >图片验证码</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="16">
+              <nz-input-group>
+                <input type="text" nz-input formControlName="picCode" placeholder="请输入图片验证码" (click)="changepiccode();">
+              </nz-input-group>
+            </div>
+            <div nz-col [nzSpan]="8">
+              <img src="{{srcurls}}" width="90" height="32" (click)="changepiccode();">
+            </div>
+          </div>
+          <nz-form-explain *ngIf="validateForm.get('picCode').dirty && validateForm.get('picCode').errors">请输入正确的图片验证码</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >短信验证码</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="16">
+              <nz-input-group>
+                <input type="text" nz-input formControlName="code" placeholder="验证码">
+               </nz-input-group>
+            </div>
+            <div nz-col [nzSpan]="8">
+              <button nz-button (click)="getCaptcha()" [nzLoading]="isLoading" [disabled]="count" class="ant-btn__block">{{ count ? count + 's' : '获取验证码' }}</button>
+            </div>
+          </div>
+          <nz-form-explain *ngIf="validateForm.get('code').dirty && validateForm.get('code').errors">请输入验证码</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >密码</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <nz-input-group>
+            <input type="password" nz-input formControlName="password"  [placeholder]="'数字或字母，长度为6-16个字符'">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码(数字或字母,6-16个英文字符)</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >重复密码</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <nz-input-group>
+            <input type="password" nz-input formControlName="repw">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('repw').dirty && validateForm.get('repw').errors">重复密码应与密码一致</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >单位</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <nz-input-group>
+            <nz-select style="width:100%;" [(ngModel)]="unitName" nzPlaceHolder="请选择单位" nzShowSearch  formControlName="unitName" (nzOnSearch)="onSearch($event)">
+              <nz-option *ngFor="let i of region" [nzValue]="i.label" [nzLabel]="i.label"></nz-option>
+            </nz-select>
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('unitName').dirty && validateForm.get('unitName').errors">请选择单位</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired >申请理由</nz-form-label>
+        <nz-form-control [nzSpan]="19">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="reason">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('reason').dirty && validateForm.get('reason').errors">请输入申请理由</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="register()" >提 交</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+  </div>
+</div>
+
+
+

@@ -1,0 +1,50 @@
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">作品类别</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-radio-group [(ngModel)]="uoloadType" name="yp" [nzDisabled]="true">
+        <label nz-radio nzValue="1">视频</label>
+        <label nz-radio nzValue="2">图片</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">报名时间</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-range-picker  [nzDisabled]="isupload" [nzFormat]="'yyyy-MM-dd HH:mm'" [nzShowTime]="{ nzFormat: 'HH:mm' }" [(ngModel)]="uploadTime"  name="uploadTime" (ngModelChange)="timeChange($event)"></nz-range-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">作品格式</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-checkbox-group [(ngModel)]="checkvideo" [ngModelOptions]="{standalone: true}" *ngIf="uoloadType=='1'"></nz-checkbox-group>
+      <nz-checkbox-group [(ngModel)]="checkimg" [ngModelOptions]="{standalone: true}" *ngIf="uoloadType=='2'"></nz-checkbox-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">作品限制</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <span *ngIf="uoloadType=='1'">时长：<input nz-input [(ngModel)]="videoTime" name="actName"  [disabled]="disabled" style="width:60px;"/> 秒以内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>大小：<input nz-input [(ngModel)]="setsize" name="setsize"  [disabled]="disabled" style="width:60px;"/> M以内</span>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3">重传作品</nz-form-label>
+    <nz-form-control [nzSpan]="19">
+      <nz-radio-group [(ngModel)]="reUoload" name="reUoload">
+        <label nz-radio nzValue="1">是</label>
+        <label nz-radio nzValue="0">否</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5"><span *ngIf="uoloadType=='1'">每组/个人</span><span *ngIf="uoloadType=='2'">每类作品每人</span>上传数量</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <input nz-input [(ngModel)]="worknum" name="worknum"  [disabled]="disabled" style="width:60%;;"/> 个
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="update()">保存</button>
+  <!--<button nz-button nzType="primary" (click)="cancel()" >取消</button>-->
+</div>

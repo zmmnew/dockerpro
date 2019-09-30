@@ -1,0 +1,46 @@
+.noteBox{
+  padding:75px 170px;
+  ul{
+    li{
+      color:#4C4C4C;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+      line-height: 50px;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      font-size: 16px;
+      span{
+        margin-right: 20px;
+      }
+    }
+    li:hover{
+      color:#FF8625;
+    }
+  }
+
+}
+@media (max-width: 1000px){
+  .noteBox{
+    padding:0 .17rem;
+    ul{
+      li{
+        color:#4C4C4C;
+        line-height: .5rem;
+        border-bottom: 1px solid #C7C7C7;
+        font-size: .14rem;
+        letter-spacing:0;
+        span{
+          margin-right: .1rem;
+        }
+      }
+    }
+
+  }
+}
+::ng-deep .ant-pagination-item-active a{
+  color:#FF8625;
+}
+::ng-deep .ant-pagination-item-active{
+  border-color: #FF8625;
+}

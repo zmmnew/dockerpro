@@ -1,0 +1,28 @@
+<div>
+  <nz-table #ajaxTable
+            [nzBordered]="true"
+            [nzFrontPagination]="false"
+            [nzData]="info"
+            [(nzTotal)]="info.length"
+
+            >
+    <thead>
+    <tr>
+      <th><span>编号</span></th>
+      <th><span>作品名称</span></th>
+      <th><span>报名时间</span></th>
+      <th><span>所属活动</span></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of ajaxTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.createTime }}</td>
+      <td>{{ data.activityVo.activityName }}</td>
+
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

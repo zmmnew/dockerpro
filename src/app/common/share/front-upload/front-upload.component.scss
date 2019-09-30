@@ -1,0 +1,68 @@
+.upload{
+  //padding: 4px 10px;
+  width:100px;
+  height:40px;
+  line-height: 40px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  color: #4D4D4D;
+  background-color: #fff;
+  border: 1px  solid #C7C7C7;
+  border-radius: 10px;
+  overflow: hidden;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.upload input{
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer
+}
+.btn{
+  button{
+    margin-left: 10px;
+  }
+}
+:host ::ng-deep .ant-progress-text {
+  //color: #054C8E;
+  font-weight: 600;
+}
+.noteInfo{
+  color: red;
+  font-size: 13px;
+  margin-top: -12px;
+  display: block;
+}
+
+.preview1{
+  width:150px;
+  height:100px;
+  border-radius:10px;
+  overflow: hidden;
+  margin-bottom: .05rem;
+}
+@media (max-width: 1000px){
+  .preview1{
+    width:2.5rem;
+    height:1.3rem;
+    border-radius:10px;
+  }
+  .ant-col-8{
+    width:100%;
+  }
+  .ant-col-16{
+    width:100%;
+  }
+  .upload{
+    display: block;
+  }
+  .noteInfo{
+    margin-top:0;
+  }
+}

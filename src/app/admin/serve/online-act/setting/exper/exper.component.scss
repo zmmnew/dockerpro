@@ -1,0 +1,22 @@
+.margb{
+  margin-bottom: 16px;
+}
+:host ::ng-deep .ant-input{
+  width:280px;
+}
+:host ::ng-deep .ant-calendar-picker{
+  width:280px;
+}
+.text-right{
+   float:right;
+   margin-right: 0;
+   button{
+     //margin-left: 15px;
+   }
+ }
+.btn{
+  margin-left: 10px;
+}
+.anticon{
+  font-size: 20px;
+}

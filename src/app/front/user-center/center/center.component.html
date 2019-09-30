@@ -1,0 +1,22 @@
+<div class="userCenter">
+  <div class="ucbanner">
+    <div class="personimg">
+      <img src="assets/img/person.png" class="pimg" alt=""/>
+      <dl>
+        <dt>{{frontInfo?.userName?frontInfo?.userName:frontInfo?.name}}</dt>
+        <dd *ngIf="frontInfo?.age"><img src="assets/img/boy.png" alt=""> {{frontInfo?.age}}岁</dd>
+      </dl>
+    </div>
+  </div>
+  <div>
+  <div class="ucNav">
+    <ul>
+      <li [routerLink]="['myact']" routerLinkActive="active">我的活动<a [routerLink]="['myactDel']"></a><a [routerLink]="['reload']"></a></li>
+      <li [routerLink]="['info']" routerLinkActive="active">消息通知</li>
+    </ul>
+  </div>
+  <div class="myCenter">
+    <router-outlet></router-outlet>
+  </div>
+  </div>
+</div>

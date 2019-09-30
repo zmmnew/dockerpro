@@ -1,0 +1,11 @@
+<div>
+  <div *ngIf="login == 1">
+    <app-login (outLogin)="change($event)"></app-login>
+  </div>
+  <div *ngIf="login == 2">
+    <app-register (outLogin)="change($event)"></app-register>
+  </div>
+  <div *ngIf="login == 3">
+    <app-forget-pw (outLogin)="change($event)"></app-forget-pw>
+  </div>
+</div>

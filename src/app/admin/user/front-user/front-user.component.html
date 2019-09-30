@@ -1,0 +1,66 @@
+<div nz-row class="margb" [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <form nz-form [nzLayout]="'inline'" nz-row>
+        <nz-form-item>
+          <nz-form-control><input nz-input placeholder="手机号" [(ngModel)]="username" name="username" style="width:170px"/></nz-form-control>
+        </nz-form-item>
+        <nz-form-item  style="width:160px">
+          <nz-button-group>
+            <button nz-button nzType="primary" (click)="getPage()" >查询</button>
+            <button nz-button nzType="primary" (click)="reset()">重置</button>
+          </nz-button-group>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </div>
+</div>
+
+<div nz-row [nzGutter]="16">
+  <div nz-col [nzMd]="24">
+    <nz-card>
+      <div class="mb-sm text-right">
+      </div>
+      <nz-table #ajaxTable
+                [nzShowSizeChanger]="true"
+                [nzBordered]="true"
+                [nzShowTotal]="totalTemplate"
+                [nzFrontPagination]="false"
+                [nzShowQuickJumper]="true"
+                [nzData]="pagelist"
+                [nzLoading]="loading"
+                [(nzTotal)]="page.total"
+                [(nzPageIndex)]="page.index"
+                (nzPageIndexChange)="getPage()"
+                (nzPageSizeChange)="pageSizeChange()"
+                [(nzPageSize)]="page.size">
+        <thead>
+        <tr>
+          <th nzWidth="150px"><span>编号</span></th>
+          <th nzWidth="150px"><span>手机号</span></th>
+          <!--<th nzWidth="150px"><span>昵称</span></th>-->
+          <th nzWidth="150px"><span>注册时间</span></th>
+          <th nzWidth="100px"><span>参赛记录</span></th>
+          <!--<th nzWidth="300px"><span>操作</span></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of ajaxTable.data">
+          <td>{{ data.id }}</td>
+          <td>{{ data.name }}</td>
+          <!--<td>{{  data.nickName==null?'&#45;&#45;':data.nickName }}</td>-->
+          <td>{{ data.createTime}}</td>
+          <td><a (click)="showModal('参赛记录',signupCompt,data.userSignUpVo)">{{ data.userSignUpVo?.length}}</a></td>
+          <!--<td>-->
+            <!--<nz-tooltip [nzTitle]="'删除'" (click)="sureDelete(data)">-->
+              <!--<a><i nz-icon nzType="delete" nzTheme="outline" nz-tooltip></i></a>-->
+            <!--</nz-tooltip>-->
+          <!--</td>-->
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>
+<ng-template #totalTemplate let-total> 共 {{page.total}} 条 </ng-template>
+

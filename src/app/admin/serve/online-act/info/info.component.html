@@ -1,0 +1,27 @@
+
+<nz-table #ajaxTable
+          [nzBordered]="true"
+          [nzFrontPagination]="false"
+          [nzData]="list">
+  <thead>
+  <tr>
+    <th nzWidth="50px"></th>
+    <th nzWidth="150px"><span>触发条件</span></th>
+    <th nzWidth="200px"><span>通知方式</span></th>
+    <th nzWidth="200px"><span>文本模板</span></th>
+  </tr>
+  </thead>
+  <tbody >
+  <tr *ngFor="let data of ajaxTable.data">
+    <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
+    <td><a>{{ data.condition }}</a></td>
+    <td>{{ data.type}}</td>
+    <td>{{ data.content}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+<div class="customize-footer">
+  <button nz-button nzType="primary" (click)="save()">保存</button>
+  <button nz-button nzType="primary" (click)="cancel()" >取消</button>
+</div>
+

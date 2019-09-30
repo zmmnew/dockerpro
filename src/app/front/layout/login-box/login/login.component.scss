@@ -1,0 +1,100 @@
+.flogin{
+  padding:15px 25px;
+  .tit{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    h2{
+      font-size: 24px;
+      color:#4D4D4D;
+      margin:0;
+    }
+    .anticon{
+      font-size: 16px;
+      color:#999999;
+      cursor: pointer;
+    }
+  }
+}
+@media (max-width: 1000px){
+  .flogin{
+    padding:0;
+    .tit{
+      margin-bottom: .15rem;
+      h2{
+        font-size: .23rem;
+      }
+      .anticon{
+        font-size: 16px;
+        color:#999999;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .login-form-button {
+    height:.4rem !important;
+    font-size: 18px;
+  }
+  input{
+    height:.4rem !important;
+  }
+  .omargin{
+    margin-bottom: 7px !important;
+  }
+  .fg{
+    color:#9A9A9A;
+    margin:.04rem 0 !important;
+  }
+
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+  height:48px;
+  font-size: 18px;
+  background:linear-gradient(90deg,rgba(255,134,37,1),rgba(255,222,37,1));
+  border:none;
+}
+input{
+  width:100%;
+  height:48px;
+}
+input:hover{
+  border-color: #FE8625 !important;
+
+}
+.ant-input-affix-wrapper .ant-input:focus {
+  border-color: #FE8625;
+  box-shadow: 0 0 4px #FE8625
+}
+nz-form-explain{
+  line-height:30px;
+}
+.omargin{
+  margin-bottom: 7px !important;
+}
+.nomargin{
+  margin-bottom: 0;
+}
+.zhuce{
+  color:#FE8625;
+}
+.fg{
+  color:#9A9A9A;
+  margin:7px 0 15px;
+}
+.ant-form-item{
+  margin-bottom: 30px;
+}
+.ant-form-item-with-help{
+  margin-bottom: 4px;
+}
+.ant-input-affix-wrapper .ant-input:not(:first-child){
+  padding-left: 40px;
+}
+

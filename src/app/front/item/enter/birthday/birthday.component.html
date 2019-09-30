@@ -1,0 +1,14 @@
+<div class="selYear">
+  <nz-select class="y" [(ngModel)]="selyear" (ngModelChange)="dayChange()">
+    <nz-option *ngFor="let y of year" [nzValue]="y" [nzLabel]="y"></nz-option>
+  </nz-select>
+  <span class="year">年</span>
+  <nz-select class="m" [(ngModel)]="selmonth" (ngModelChange)="dayChange()">
+    <nz-option *ngFor="let m of month" [nzValue]="m" [nzLabel]="m"></nz-option>
+  </nz-select>
+  <span class="year">月</span>
+  <nz-select  class="m" [(ngModel)]="selday" (ngModelChange)="birthday()">
+    <nz-option *ngFor="let d of day" [nzValue]="d" [nzLabel]="d"></nz-option>
+  </nz-select>
+  <span class="year nomargin">日</span>
+</div>
