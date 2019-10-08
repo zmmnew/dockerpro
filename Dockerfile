@@ -1,5 +1,5 @@
 # zmmnew 2019.10.08
-FROM node:6.10.3-slim
+FROM node:10.15.3-slim
 RUN apt-get update \    
     && apt-get install -y nginx
 WORKDIR /app
