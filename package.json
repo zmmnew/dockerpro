@@ -25,7 +25,7 @@
     "cropper": "^4.0.0",
     "file-saver": "^2.0.2",
     "fingerprintjs": "^0.5.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-zorro-antd": "^7.4.1",
     "ngx-clipboard": "^12.1.2",
     "rxjs": "~6.3.3",
